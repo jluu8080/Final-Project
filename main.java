@@ -22,12 +22,14 @@ public class main
         //Jason's Arrays: daysOfTheWeek & hours
         String[] daysOfTheWeek = {"\t\t  Mon  ","\t\t  Tue  ","\t\t  Wed  ","\t\t  Thu  ","\t\t  Fri  ","\t\t  Sat  ","\t\t  Sun  "};
 
-        /*String[] hours = 
+        String[] hours = 
         {
             "12:00 AM", "01:00 AM", "02:00 AM","03:00 AM","04:00 AM", "05:00 AM", "06:00 AM", "07:00 AM","08:00 AM", "09:00 AM", "10:00 AM","11:00 AM",
             "12:00 PM", "01:00 PM", "02:00 PM","03:00 PM","04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM","08:00 PM", "09:00 PM", "10:00 PM","11:00 PM",
     
         };
+
+
         /*
         System.out.println("Menu");
         System.out.println("Enter Day (1-7): ");     
@@ -64,11 +66,16 @@ public class main
         System.out.println(); //Spacer
 
 
+    //Kloe's Loop for hourly print and blank activity spaces
     //print out time from 12 AM to 11 PM
+
+    /*
     for (int hour = 0; hour < 24; hour++) {
+
         int displayHour = hour % 12;
         if (displayHour == 0) displayHour = 12;
         String period = (hour < 12) ? "AM" : "PM";
+        
 
         // Print time label (example 01:00 PM)
         System.out.printf("%02d:00 %s", displayHour, period);
@@ -78,6 +85,19 @@ public class main
             System.out.print("\t--------");
         }
         System.out.println();
+    }
+    */
+
+    //Jason's Loop for hours
+    for (int i = 0; i<hours.length; i++)
+    {
+        System.out.print(hours[i]);
+
+        for (int j = 0; j < 7; j++) {
+            System.out.print("\t--------");
+        }
+        System.out.println();
+
     }
 }
 }
