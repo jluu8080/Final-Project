@@ -51,3 +51,38 @@ End Date: 4/6 at 4 AM
 Description:
 I merged the hours and days of the week arrays combined them and planned on using a large 2D Array instead, to process adding/deleting of activities easily. My brain is fried and tired rn, so I planned on using array indexes to do all the input stuff. String variables storing the empty activity and for the empty activities under Sundays.
 
+| to do list    | contributor   |date of completion|longer discription                                                      |
+| ------------- | ------------- |------------------|------------------------------------------------------------------------|
+| fix input     | Content Cell  |  4/6             |                                                                        |         
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
+| Content Cell  | Content Cell  |                  |                                                                        |
