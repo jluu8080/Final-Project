@@ -12,12 +12,16 @@ PLEASE!
 "Start Date: #/# at #:##"       *Do this before you work*  
 "End Date Date: #/# at #:##"    *Do this after you're done*
 
+Description:  
+
          
 ***Example***:
 Jason Luu - Jason - "I Was working on the menu and I've been having issues with Input"  
 Start Date: 4/4/25 at 5 PM  
 End Date: 4/4/25 at 6 PM
 
+Description:  
+I broke something
 
 
 ***Template:***  
@@ -26,6 +30,8 @@ End Date: 4/4/25 at 6 PM
 name - branch - Problem/Feature Description  
 Start Date: () at () AM/PM  
 End Date: () at () AM/PM
+
+Description:  
 
 
 # Problems
