@@ -38,8 +38,10 @@ Kloe's printing out for days were displaced a bit, so I fixed it by adding "/t"s
 
 
 # Features
-Jason - main branch - Input for Activity    
+Jason - Jason branch - Input for Activity(Work-In-Progress)  
 Start Date: 4/6 at 1:52 AM  
-End Date: () at () AM/PM
+End Date: 4/6 at 4 AM  
 
+Description:
+I merged the hours and days of the week arrays combined them and planned on using a large 2D Array instead, to process adding/deleting of activities easily. My brain is fried and tired rn, so I planned on using array indexes to do all the input stuff. String variables storing the empty activity and for the empty activities under Sundays.
 
