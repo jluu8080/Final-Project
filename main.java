@@ -2,11 +2,9 @@ import java.util.Scanner;
 
 /*
 Issues:
-1. We can't write a full day out without days being close together, need to manually format days. Please fix 
+1. scanner input but no output/closing function
 
 
-
-n+1. teamwork with Jason is hard lets work on that.
  */
 
 
@@ -15,7 +13,7 @@ public class main
 
     public static void main(String[] args)
     {
-        String[] daysOfTheWeek = {"   ","Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+        String[] daysOfTheWeek = {"   ","  Mon  ","  Tue  ","  Wed  ","  Thu  ","  Fri  ","  Sat  ","  Sun  "};
         Scanner input = new Scanner(System.in);
 
         /*
@@ -42,8 +40,6 @@ public class main
             System.out.println("That is not a day of the week.");
         }
         */
-
-
         
         System.out.println(); //Spacer
 
@@ -53,37 +49,22 @@ public class main
             System.out.print("\t" + daysOfTheWeek[i] + "\t");
 
         }
-        
-        
+
+
         System.out.println(); //Spacer
-
-        /*Prints Hours
-        for (int i = 1; i<6; i++)
-        {
-            System.out.println(i);
-
-        }
-
-        for (int h = 1; h<7; i++)
-        {
-            System.out.print("\t" + "activity" + "\t");
-
-            for (int d = 0; d<6; d++)
-            System.out.println();
-        }
-        */
         
+    //print out time 
     for (int hour = 0; hour < 24; hour++) {
         int displayHour = hour % 12;
         if (displayHour == 0) displayHour = 12;
         String period = (hour < 12) ? "AM" : "PM";
 
-        // Print time label (e.g., 01:00 PM)
+        // Print time label (example 01:00 PM)
         System.out.printf("%02d:00 %s", displayHour, period);
 
-        // Print 7 empty activity slots (one for each day)
+        // Print 7 empty activity slots (one for each day of the hour)
         for (int i = 0; i < 7; i++) {
-            System.out.print("\t----");
+            System.out.print("\t--------");
         }
         System.out.println();
     }
