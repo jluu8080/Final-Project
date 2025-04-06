@@ -34,7 +34,7 @@ Start Date: 4/6 at 2:10 AM
 End Date: 4/6 at 2:13 AM  
 
 Description: 
-Kloe's printing out for days were displaced a bit, so I fixed it by adding "/t"s with days inside the array and made the for loop for to "print from i = 0; t<daysOfTheWeek.length", to have it print from the array's length this time instead of hardcoding the value. Just a minor update.
+Kloe's printing out for days were displaced a bit, so I fixed it by adding "/t"s with days inside the array and made the for loop for to "print from i = 0; i<daysOfTheWeek.length", to have it print from the array's length this time instead of hardcoding the value. Just a minor update.
 
 
 # Features
