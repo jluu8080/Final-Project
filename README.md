@@ -29,7 +29,7 @@ End Date: () at () AM/PM
 
 
 # Problems
-Jason - main branch - (Fixed) Day Displacement & re-did printing for hours.
+Jason - main branch - (Fixed) Day Displacement & re-did printing for hours.  
 Start Date: 4/6 at 2:10 AM  
 End Date: 4/6 at 2:13 AM  
 
