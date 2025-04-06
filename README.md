@@ -34,7 +34,7 @@ Start Date: 4/6 at 2:10 AM
 End Date: 4/6 at 2:13 AM  
 
 Description: 
-Kloe's printing out for days were displaced a bit, so I fixed it by adding "/t"s with days inside the array and made the for loop for to "print from i = 0; i<daysOfTheWeek.length", to have it print from the array's length this time instead of hardcoding the value. Just a minor update. I also re-did Kloe's portion for printing hours, I used an array hardcoded the values and used a for-loop to print them along with empty activity spaces
+Kloe's printing out for days were displaced a bit, so I fixed it by adding "/t"s with days inside the array and made the for loop for to "print from i = 0; i<daysOfTheWeek.length", to have it print from the array's length this time instead of hardcoding the value. Just a minor update. I also re-did Kloe's portion for printing hours, I used an array hardcoded the values and used a for-loop to print them along with empty activity spaces. I kept Kloe's Code in-case, she could improve what I made or disapprove of what I did.
 
 
 # Features
