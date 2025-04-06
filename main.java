@@ -15,7 +15,7 @@ public class main
 
     public static void main(String[] args)
     {
-        String[] daysOfTheWeek = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
+        String[] daysOfTheWeek = {"   ","Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
         Scanner input = new Scanner(System.in);
 
         /*
@@ -48,7 +48,7 @@ public class main
         System.out.println(); //Spacer
 
         //Prints Days of The Week
-        for (int i = 0; i<7; i++)
+        for (int i = 0; i<8; i++)
         {
             System.out.print("\t" + daysOfTheWeek[i] + "\t");
 
@@ -57,14 +57,13 @@ public class main
         
         System.out.println(); //Spacer
 
-        //Prints Hours
+        /*Prints Hours
         for (int i = 1; i<6; i++)
         {
             System.out.println(i);
 
         }
-        
-        /*
+
         for (int h = 1; h<7; i++)
         {
             System.out.print("\t" + "activity" + "\t");
@@ -73,12 +72,20 @@ public class main
             System.out.println();
         }
         */
-
-
-
         
+    for (int hour = 0; hour < 24; hour++) {
+        int displayHour = hour % 12;
+        if (displayHour == 0) displayHour = 12;
+        String period = (hour < 12) ? "AM" : "PM";
+
+        // Print time label (e.g., 01:00 PM)
+        System.out.printf("%02d:00 %s", displayHour, period);
+
+        // Print 7 empty activity slots (one for each day)
+        for (int i = 0; i < 7; i++) {
+            System.out.print("\t----");
+        }
+        System.out.println();
     }
-    
-
-
+}
 }
