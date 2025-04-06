@@ -3,6 +3,7 @@ import java.util.Scanner;
 /*
 Issues:
 1. scanner input but no output/closing function
+    What do you mean? - Jason L.
 
 
  */
@@ -13,9 +14,20 @@ public class main
 
     public static void main(String[] args)
     {
-        String[] daysOfTheWeek = {"   ","  Mon  ","  Tue  ","  Wed  ","  Thu  ","  Fri  ","  Sat  ","  Sun  "};
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in); //Makes an input class
 
+        //Kloe's Array: Idk why but when I print the days, the days are misaligned
+        //String[] daysOfTheWeek = {"   ","  Mon  ","  Tue  ","  Wed  ","  Thu  ","  Fri  ","  Sat  ","  Sun  "};
+        
+        //Jason's Arrays: daysOfTheWeek & hours
+        String[] daysOfTheWeek = {"\t\t  Mon  ","\t\t  Tue  ","\t\t  Wed  ","\t\t  Thu  ","\t\t  Fri  ","\t\t  Sat  ","\t\t  Sun  "};
+
+        /*String[] hours = 
+        {
+            "12:00 AM", "01:00 AM", "02:00 AM","03:00 AM","04:00 AM", "05:00 AM", "06:00 AM", "07:00 AM","08:00 AM", "09:00 AM", "10:00 AM","11:00 AM",
+            "12:00 PM", "01:00 PM", "02:00 PM","03:00 PM","04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM","08:00 PM", "09:00 PM", "10:00 PM","11:00 PM",
+    
+        };
         /*
         System.out.println("Menu");
         System.out.println("Enter Day (1-7): ");     
@@ -29,8 +41,7 @@ public class main
 
         System.out.println("What activity?: ");
         String activityInput = input.nextLine();
-
-
+        
         
         if (dayInput<7 && dayInput >0){
             System.out.println(daysOfTheWeek[dayInput]);
@@ -40,20 +51,20 @@ public class main
             System.out.println("That is not a day of the week.");
         }
         */
-        
+
         System.out.println(); //Spacer
 
         //Prints Days of The Week
-        for (int i = 0; i<8; i++)
+        for (int i = 0; i<daysOfTheWeek.length; i++)
         {
-            System.out.print("\t" + daysOfTheWeek[i] + "\t");
+            System.out.print(daysOfTheWeek[i]);
 
         }
 
-
         System.out.println(); //Spacer
-        
-    //print out time 
+
+
+    //print out time from 12 AM to 11 PM
     for (int hour = 0; hour < 24; hour++) {
         int displayHour = hour % 12;
         if (displayHour == 0) displayHour = 12;
