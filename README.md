@@ -8,39 +8,23 @@ PLEASE!
 
 4. If you need help, just ask :)
 
-
+project timeline
 | to do list    | contributor   |date of completion|longer discription                                                      |
 | ------------- | ------------- |------------------|------------------------------------------------------------------------|
+| add time func | Kloe          |  4/5             | a loop of all the hour in the day                                      |
+| fix time form | Content Cell  |  4/5             | formatting issue, jason decide to hardcode it with a 2d array          |
 | Finished input| Jason         |  4/6             | It's in the Jason Branch                                               |         
-| delete input  | Content Cell  |                  |                                                                        |
-| replace input | Content Cell  |                  |                                                                        |
-| print all     | Content Cell  |                  | Include updated version                                                |
-| GUI buttons   | Content Cell  |                  |                                                                        |
-| fix hard code | Content Cell  |                  | try to index instead of hard coding                                    |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
+| delete input  | Contributor   |                  |                                                                        |
+| replace input | Contributor   |                  |                                                                        |
+| print all     | Contributor   |                  | Include updated version                                                |
+| GUI buttons   | Contributor   |                  |                                                                        |
+| fix hard code | Contributor   |                  | try to index instead of hard coding                                    |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
+| To do         | Contributor   |                  |                                                                        |
