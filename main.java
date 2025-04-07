@@ -138,23 +138,6 @@ public class main
         }
         
         weeklyOverview[timeInput][dayInput] = activityInput;
-        //System.out.println(activityInput.length());
-        //System.out.println(weeklyOverview[2][2]);
-
-       // weeklyOverview[2][2] = activityInput;
-        //System.out.println(weeklyOverview[2][2]);
-
-
-        /*
-        if (dayInput<7 && dayInput >0){
-            System.out.println(daysOfTheWeek[dayInput]);
-        }
-        else
-        {
-            System.out.println("That is not a day of the week.");
-        }
-        */
-
         overviewFunctions.printWeeklyOverview(weeklyOverview);
 
     }
