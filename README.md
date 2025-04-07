@@ -12,11 +12,11 @@ PLEASE!
 | to do list    | contributor   |date of completion|longer discription                                                      |
 | ------------- | ------------- |------------------|------------------------------------------------------------------------|
 | Finished input| Jason         |  4/6             | It's in the Jason Branch                                               |         
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
-| Content Cell  | Content Cell  |                  |                                                                        |
+| delete input  | Content Cell  |                  |                                                                        |
+| replace input | Content Cell  |                  |                                                                        |
+| print all     | Content Cell  |                  | Include updated version                                                |
+| GUI buttons   | Content Cell  |                  |                                                                        |
+| fix hard code | Content Cell  |                  | try to index instead of hard coding                                    |
 | Content Cell  | Content Cell  |                  |                                                                        |
 | Content Cell  | Content Cell  |                  |                                                                        |
 | Content Cell  | Content Cell  |                  |                                                                        |
