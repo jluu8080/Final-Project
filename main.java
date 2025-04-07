@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+<<<<<<< Updated upstream
 /*
 Issues:
 1. scanner input but no output/closing function
@@ -7,6 +8,72 @@ Issues:
 
 
  */
+=======
+class overviewFunctions
+{
+    static Scanner input = new Scanner(System.in); //Makes it accessible within the class.
+
+    //Print the Weekly Overview
+    public static void printWeeklyOverview(String[][] overview)
+    {
+        //Prints the Weekly Overview
+        for (int i = 0; i<overview.length;i++)
+        {
+            for (int j = 0; j<overview[i].length;j++)
+            {
+                System.out.print(overview[i][j]);
+            }
+        }
+    }
+
+    //Gets input for days.
+    public static int dayInput()
+    {
+        //A while loop that goes on until the user types in a valid day.
+        while (true)
+        {
+            System.out.print("Enter Day (1-7): ");     
+            int day = input.nextInt();
+            
+            System.out.println(); //Spacer
+            
+            //If day is greater than or equal 1 & less than 8
+            if (day>=1 && day<8)
+            {
+                return day;
+            }
+            else
+            {
+                System.out.println("Your Input is invalid...\n"); //Error Message
+            }
+        }
+    }
+
+    //gets Input for Hours
+    public static int hourInput()
+    {
+
+        //A while loop that goes on until the user types in a valid hour.
+        while (true)
+        {
+            System.out.print("What time (1-24): ");
+            int hour = input.nextInt();
+            
+            System.out.println(); //Spacer
+            
+            //If day is greater than or equal 1 & less than 8
+            if (hour>=1 && hour<24)
+            {
+                return hour;
+            }
+            else
+            {
+                System.out.println("Your Input is invalid...\n"); //Error Message
+            }
+        }
+    }
+}
+>>>>>>> Stashed changes
 
 
 public class main 
@@ -45,6 +112,7 @@ public class main
         String activityInput = input.nextLine();
         
         
+<<<<<<< Updated upstream
         if (dayInput<7 && dayInput >0){
             System.out.println(daysOfTheWeek[dayInput]);
         }
@@ -97,6 +165,16 @@ public class main
             System.out.print("\t--------");
         }
         System.out.println();
+=======
+        //If greater than 8, cut down the string to 8 characters **Would need to format the entire overview with more spaces.
+        else
+        {
+            activityInput = activityInput.substring(0, 7);
+        }
+        
+        weeklyOverview[timeInput][dayInput] = activityInput;
+        overviewFunctions.printWeeklyOverview(weeklyOverview);
+>>>>>>> Stashed changes
 
     }
 }
