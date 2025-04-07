@@ -48,7 +48,7 @@ PLEASE!
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
 |-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
 | **Implement Read & Write File Handling**  | Contributor       |    |  Make a code block for reading and writing to files                       |
-| **Save File**           Contributor       |                        | Make a file to save the content from the weekly overview                 |
+| **Save File**         | Contributor       |                        | Make a file to save the content from the weekly overview                 |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
