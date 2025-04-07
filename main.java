@@ -1,6 +1,10 @@
 import java.util.Scanner;
-class oveviewFunctions
+
+import javax.swing.plaf.TreeUI;
+class overviewFunctions
 {
+    static Scanner input = new Scanner(System.in); //Makes it accessible within the class.
+
     public static void printWeeklyOverview(String[][] overview)
     {
         //Prints the Weekly Overview
@@ -12,6 +16,48 @@ class oveviewFunctions
             }
         }
     }
+
+    public static int dayInput()
+    {
+        while (true)
+        {
+            System.out.print("Enter Day (1-7): ");     
+            int day = input.nextInt();
+            
+            System.out.println(); //Spacer
+            
+            //If day is greater than or equal 1 & less than 8
+            if (day>=1 && day<8)
+            {
+                return day;
+            }
+            else
+            {
+                System.out.println("Your Input is invalid...\n"); //Error Message
+            }
+        }
+    }
+
+    public static int hourInput()
+    {
+        while (true)
+        {
+            System.out.print("What time (1-24): ");
+            int hour = input.nextInt();
+            
+            System.out.println(); //Spacer
+            
+            //If day is greater than or equal 1 & less than 8
+            if (hour>=1 && hour<24)
+            {
+                return hour;
+            }
+            else
+            {
+                System.out.println("Your Input is invalid...\n"); //Error Message
+            }
+        }
+    }
 }
 
 
@@ -20,8 +66,8 @@ public class main
 
     public static void main(String[] args)
     {
-        String[] daysOfTheWeek = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
         Scanner input = new Scanner(System.in);
+        String[] daysOfTheWeek = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
 
         String[][] weeklyOverview = //rows[25] columns[8], 8 hypens for an empty activity
         {
@@ -53,10 +99,8 @@ public class main
 
         };
 
-        /*
         System.out.println("Menu");
-        System.out.print("Enter Day (1-7): ");     
-        int dayInput = input.nextInt();
+        int dayInput = overviewFunctions.dayInput();
 
         System.out.println();//Spacer
 
@@ -72,12 +116,14 @@ public class main
         String activityInput = input.nextLine();
 
         System.out.println();//Spacer
-        */
         
-        //weeklyOverview[timeInput][dayInput] = activityInput;
-        String activityInput = "\tDumb";
-        int activityInputLength = activityInput.length();
+        activityInput = "\t" + activityInput; //Adds a tabspace to it
 
+        /*
+        If activityInput is less than 8 characters, *\t aka tab space or ASCNI characters are considered 1 character not 2
+        Add spaces to fill it up to 8 or leave it be
+        Because it won't affect weeklyOverview formatting/spacing
+        */
         if (activityInput.length() <=8)
         {
             for (int i = activityInput.length(); i<=8; i++)
@@ -85,13 +131,19 @@ public class main
                 activityInput += " ";
             }
         }
-        //activityInput += "\t";
         
-        System.out.println(activityInput.length());
-        System.out.println(weeklyOverview[2][2]);
+        //If greater than 8, cut down the string to 8 characters **Would need to format the entire overview with more spaces.
+        else
+        {
+            activityInput = activityInput.substring(0, 7);
+        }
+        
+        weeklyOverview[timeInput][dayInput] = activityInput;
+        //System.out.println(activityInput.length());
+        //System.out.println(weeklyOverview[2][2]);
 
-        weeklyOverview[2][2] = activityInput;
-        System.out.println(weeklyOverview[2][2]);
+       // weeklyOverview[2][2] = activityInput;
+        //System.out.println(weeklyOverview[2][2]);
 
 
         /*
@@ -104,7 +156,7 @@ public class main
         }
         */
 
-        oveviewFunctions.printWeeklyOverview(weeklyOverview);
+        overviewFunctions.printWeeklyOverview(weeklyOverview);
 
     }
     
