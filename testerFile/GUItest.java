@@ -16,6 +16,11 @@ public class GUItest extends JFrame {
         JPanel westPanel = new JPanel();
         JPanel centerPanel = new JPanel();
 
+        // Creats buttons
+        JButton button1 = new JButton("Click Me");
+        JButton button2 = new JButton("Click Me Too");
+        JButton button3 = new JButton("Click Me Three");
+
         // Set background colors for panels
         northPanel.setBackground(Color.RED);
         southPanel.setBackground(Color.GREEN);
@@ -36,6 +41,11 @@ public class GUItest extends JFrame {
         add(eastPanel, BorderLayout.EAST);
         add(westPanel, BorderLayout.WEST);
         add(centerPanel, BorderLayout.CENTER);
+
+        // Add buttons to the center panel
+        centerPanel.add(button1);
+        centerPanel.add(button2);
+        centerPanel.add(button3);
 
 
     }
