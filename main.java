@@ -16,11 +16,14 @@ class overviewFunctions
         }
     }
 
+    //Asks for Day Input
     public static int dayInput()
     {
+        //While true (infinite loop), asking for a day.
         while (true)
         {
-            System.out.print("Enter Day (1-7): ");     
+            //Asks for a day from Monday(1) - Sunday(7)
+            System.out.print("Enter Day (1-7): ");
             int day = input.nextInt();
             
             System.out.println(); //Spacer
@@ -37,10 +40,13 @@ class overviewFunctions
         }
     }
 
+    //Asks for hour input
     public static int hourInput()
     {
+        //While true (infinite loop), asking for an hour continiously until the input is valid.
         while (true)
         {
+            //Asks for an hour from 1 AM - 12 AM??
             System.out.print("What time (1-24): ");
             int hour = input.nextInt();
             
@@ -49,7 +55,7 @@ class overviewFunctions
             //If day is greater than or equal 1 & less than 8
             if (hour>=1 && hour<24)
             {
-                return hour;
+                return hour; //Returns hour and breaks out of loop because inputted value is valid.
             }
             else
             {
@@ -62,11 +68,9 @@ class overviewFunctions
 
 public class main 
 {
-
     public static void main(String[] args)
     {
         Scanner input = new Scanner(System.in);
-        String[] daysOfTheWeek = {"Mon","Tue","Wed","Thu","Fri","Sat","Sun"};
 
         String[][] weeklyOverview = //rows[25] columns[8], 8 hypens for an empty activity
         {
@@ -98,6 +102,8 @@ public class main
 
         };
 
+
+        /*
         System.out.println("Menu");
         int dayInput = overviewFunctions.dayInput();
 
@@ -111,35 +117,41 @@ public class main
 
         input.nextLine(); //Buffer line that must be used after asking for an Integer input and immediately a string input.
 
-        System.out.print("What activity?: ");
-        String activityInput = input.nextLine();
+        */
+        int timeInput = 2;
+        int dayInput = 2;
+
+        //System.out.print("What activity?: ");
+        String activityInput = "ILoveAnimeGirlsAndICannotLie :P";//input.nextLine();
 
         System.out.println();//Spacer
         
         activityInput = "\t" + activityInput; //Adds a tabspace to it
+        System.out.println(activityInput.length());
 
         /*
         If activityInput is less than 8 characters, *\t aka tab space or ASCNI characters are considered 1 character not 2
         Add spaces to fill it up to 8 or leave it be
         Because it won't affect weeklyOverview formatting/spacing
         */
-        if (activityInput.length() <=8)
+        if (activityInput.length() <=9)
         {
-            for (int i = activityInput.length(); i<=8; i++)
+            for (int i = activityInput.length(); i<=9; i++)
             {
                 activityInput += " ";
             }
         }
-        
         //If greater than 8, cut down the string to 8 characters **Would need to format the entire overview with more spaces.
         else
         {
-            activityInput = activityInput.substring(0, 7);
+            activityInput = activityInput.substring(0, 9);
+            System.out.println(activityInput);
         }
         
-        weeklyOverview[timeInput][dayInput] = activityInput;
-        overviewFunctions.printWeeklyOverview(weeklyOverview);
+        weeklyOverview[timeInput][dayInput] = activityInput; //Adds the activity to the day and hour the user inputted
+        overviewFunctions.printWeeklyOverview(weeklyOverview); //Prints the entire Weekly Overview.
 
+        input.close();
     }
     
 }
