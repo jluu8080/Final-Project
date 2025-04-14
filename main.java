@@ -1,10 +1,22 @@
 import java.util.Scanner;
+<<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
+/*
+Issues:
+1. scanner input but no output/closing function
+    What do you mean? - Jason L.
+
+
+ */
+=======
+=======
+>>>>>>> Stashed changes
 class overviewFunctions
 {
     static Scanner input = new Scanner(System.in); //Makes it accessible within the class.
-    static String emptyActivity = "\t--------"; //Sring Value used within weeklyOverview for empty activity/indexes
 
+    //Print the Weekly Overview
     public static void printWeeklyOverview(String[][] overview)
     {
         //Prints the Weekly Overview
@@ -17,14 +29,13 @@ class overviewFunctions
         }
     }
 
-    //Asks for Day Input
+    //Gets input for days.
     public static int dayInput()
     {
-        //While true (infinite loop), asking for a day.
+        //A while loop that goes on until the user types in a valid day.
         while (true)
         {
-            //Asks for a day from Monday(1) - Sunday(7)
-            System.out.print("Enter Day (1-7): ");
+            System.out.print("Enter Day (1-7): ");     
             int day = input.nextInt();
             
             System.out.println(); //Spacer
@@ -41,13 +52,13 @@ class overviewFunctions
         }
     }
 
-    //Asks for hour input
-    public static int timeInput()
+    //gets Input for Hours
+    public static int hourInput()
     {
-        //While true (infinite loop), asking for an hour continiously until the input is valid.
+
+        //A while loop that goes on until the user types in a valid hour.
         while (true)
         {
-            //Asks for an hour from 12 AM - 11 PM
             System.out.print("What time (1-24): ");
             int hour = input.nextInt();
             
@@ -56,7 +67,7 @@ class overviewFunctions
             //If day is greater than or equal 1 & less than 8
             if (hour>=1 && hour<24)
             {
-                return hour; //Returns hour and breaks out of loop because inputted value is valid.
+                return hour;
             }
             else
             {
@@ -64,185 +75,101 @@ class overviewFunctions
             }
         }
     }
-
-    //Adds Activity to the weekly overview
-    public static String addActivity()
-    {
-        input.nextLine(); //Buffer Line, used after right after doing a numerical/integer/double input
-        while (true)
-        {
-
-            System.out.print("What activity? (Ex. Running): ");
-            String activityInput = input.nextLine();//"ILoveAnimeGirlsAndICannotLie :P";//input.nextLine();
-
-            System.out.println();//Spacer
-
-            System.out.println("Your Activity is: '" + activityInput + "' Is this Correct?");
-            System.out.print("Yes or No?: ");
-            String userInput = input.nextLine();
-
-            //If the user says "No", then the loop will re-iterate/loop again. Otherwise, activityInput will be processed
-            //To corrrectly format and place itself into the weeklyOverview
-            if (userInput.equals("No") || !(userInput.equals("Yes")))
-            {
-                continue;
-            }
-
-
-            activityInput = "\t" + activityInput; //Adds a tabspace to it
-            /*
-            If activityInput is less than 8 characters, *\t aka tab space or ASCNI characters are considered 1 character not 2
-            Add spaces to fill it up to 8 or leave it be
-            Because it won't affect weeklyOverview formatting/spacing
-            */
-            if (activityInput.length() <=9)
-            {
-                for (int i = activityInput.length(); i<=9; i++)
-                {
-                    activityInput += " ";
-                }
-            }
-            //If greater than 8, cut down the string to 8 characters **Would need to format the entire overview with more spaces.
-            else
-            {
-                activityInput = activityInput.substring(0, 9); //Substring(0 - Inclusive, 9 - Exclusive) indexes of the string.
-                System.out.println(activityInput); //Prints the input for testing
-            }
-            return activityInput;
-        }
-    }
-
-    public static String[][] removeActivity(String[][] weeklyOverview)
-    {
-        int dayInput = 0;
-        int timeInput = 0;
-
-        System.out.println();//Spacer
-        overviewFunctions.printWeeklyOverview(weeklyOverview);
-
-        System.out.println("\n\nSelect the Day & Time of the activity, you wish to delete..."); //Double Spacer
-
-        dayInput = overviewFunctions.dayInput();
-        timeInput = overviewFunctions.timeInput();
-
-        weeklyOverview[timeInput][dayInput] = emptyActivity;
-        return weeklyOverview;
-
-    }
-
-
-public static String[][] replaceActivity(String[][] weeklyOverview)
-{
-
-    System.out.println();//Spacer
-    
-    overviewFunctions.printWeeklyOverview(weeklyOverview);
-
-    System.out.println("\n\n"); //Double Spacer
-
-    System.out.println("Select the Day & Time of the activity, you wish to delete...");
-    int dayInput = dayInput();
-    int timeInput = timeInput();
-    String newActivity = addActivity();
-
-    weeklyOverview[timeInput][dayInput] = newActivity;
-    return weeklyOverview;
-
-}
 }
 
 public class main 
 {
+
     public static void main(String[] args)
     {
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner(System.in); //Makes an input class
 
-        String[][] weeklyOverview = //rows[25] columns[8], 8 hypens for an empty activity
+        //Kloe's Array: Idk why but when I print the days, the days are misaligned
+        //String[] daysOfTheWeek = {"   ","  Mon  ","  Tue  ","  Wed  ","  Thu  ","  Fri  ","  Sat  ","  Sun  "};
+        
+        //Jason's Arrays: daysOfTheWeek & hours
+        String[] daysOfTheWeek = {"\t\t  Mon  ","\t\t  Tue  ","\t\t  Wed  ","\t\t  Thu  ","\t\t  Fri  ","\t\t  Sat  ","\t\t  Sun  "};
+
+        String[] hours = 
         {
-            {"\t\t","  Mon  ","\t\t  Tue  ","\t\t  Wed  ","\t\t  Thu  ","\t\t  Fri  ","\t\t  Sat  ","\t\t  Sun  \n"},
-            {"12:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"01:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"02:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"03:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"04:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"05:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"06:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"07:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"08:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"09:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"10:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"11:00 AM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"12:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"01:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"02:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"03:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"04:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"05:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"06:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"07:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"08:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"09:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"10:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-            {"11:00 PM", "\t--------","\t--------","\t--------","\t--------","\t--------","\t--------","\t--------\n"},
-
+            "12:00 AM", "01:00 AM", "02:00 AM","03:00 AM","04:00 AM", "05:00 AM", "06:00 AM", "07:00 AM","08:00 AM", "09:00 AM", "10:00 AM","11:00 AM",
+            "12:00 PM", "01:00 PM", "02:00 PM","03:00 PM","04:00 PM", "05:00 PM", "06:00 PM", "07:00 PM","08:00 PM", "09:00 PM", "10:00 PM","11:00 PM",
+    
         };
 
 
+        /*
         System.out.println("Menu");
-        System.out.println("(1) Add Activity");
-        System.out.println("(2) Delete Activity");
-        System.out.println("(3) Replace Activity\n");
+        System.out.println("Enter Day (1-7): ");     
+        int dayInput = input.nextInt();
+
+
+        System.out.println("What time (Hour): ");
+        int timeInput = input.nextInt();
+
+        input.nextLine(); //Buffer line that must be used after asking for an Integer input and immediately a string input.
+
+        System.out.println("What activity?: ");
+        String activityInput = input.nextLine();
+    
+        */
+
+        System.out.println(); //Spacer
+
+        //Prints Days of The Week
+        for (int i = 0; i<daysOfTheWeek.length; i++)
+        {
+            System.out.print(daysOfTheWeek[i]);
+
+        }
+
+        System.out.println(); //Spacer
+
+
+    //Kloe's Loop for hourly print and blank activity spaces
+    //print out time from 12 AM to 11 PM
+
+    /*
+    for (int hour = 0; hour < 24; hour++) {
+
+        int displayHour = hour % 12;
+        if (displayHour == 0) displayHour = 12;
+        String period = (hour < 12) ? "AM" : "PM";
         
-        System.out.print("Select an Option(1-3): ");
-        String userInput = input.nextLine();
 
+        // Print time label (example 01:00 PM)
+        System.out.printf("%02d:00 %s", displayHour, period);
 
-        //Add an Activity
-        if (userInput.equals("1"))
-        {
-            int dayInput = overviewFunctions.dayInput();
-
-            int timeInput = overviewFunctions.timeInput();
-
-            String activityInput = overviewFunctions.addActivity();
-
-            weeklyOverview[timeInput][dayInput] = activityInput;
+        // Print 7 empty activity slots (one for each day of the hour)
+        for (int i = 0; i < 7; i++) {
+            System.out.print("\t--------");
         }
-        
-        //Remove an Activity
-        else if(userInput.equals("2"))
-        {
-            weeklyOverview[2][2] =  "\tSleeping"; //Used for Testing
-            weeklyOverview = overviewFunctions.removeActivity(weeklyOverview);
-        }
+        System.out.println();
+    }
+    */
 
-        //Replace Activity
-        else if(userInput.equals("3"))
-        {
-            weeklyOverview = overviewFunctions.replaceActivity(weeklyOverview);
-        }
+    //Jason's Loop for hours
+    for (int i = 0; i<hours.length; i++)
+    {
+        System.out.print(hours[i]);
 
-        //Invalid Selection of Options/Invalid Input
+        for (int j = 0; j < 7; j++) {
+            System.out.print("\t--------");
+        }
+        System.out.println();
+=======
+=======
+>>>>>>> Stashed changes
+        //If greater than 8, cut down the string to 8 characters **Would need to format the entire overview with more spaces.
         else
         {
-        
-            System.out.println("Input Not Valid...(Pause Implemented)");
-            try
-            {
-                Thread.sleep(2000);
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
+            activityInput = activityInput.substring(0, 7);
         }
+        
+        weeklyOverview[timeInput][dayInput] = activityInput;
+        overviewFunctions.printWeeklyOverview(weeklyOverview);
+>>>>>>> Stashed changes
 
-        //int timeInput = 2; //For Testing
-        //int dayInput = 2; //For Testing
-
-        overviewFunctions.printWeeklyOverview(weeklyOverview); //Prints the entire Weekly Overview.
-
-        input.close(); //Closes Input, to prevent Memory Leak
     }
-    
+}
 }
