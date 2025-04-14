@@ -7,14 +7,14 @@ class overviewFunctions
 
 
     //Prints the Weekly Overview (In its entirety)
-    public static void printWeeklyOverview(String[][] overview)
+    public static void printWeeklyOverview(String[][] weeklyOverview)
     {
         //Prints the Weekly Overview
-        for (int i = 0; i<overview.length;i++)
+        for (int i = 0; i<weeklyOverview.length;i++) //Why weeklyOverview.length is like this? Because it's an array
         {
-            for (int j = 0; j<overview[i].length;j++)
+            for (int j = 0; j<weeklyOverview[i].length;j++)
             {
-                System.out.print(overview[i][j]);
+                System.out.print(weeklyOverview[i][j]);
             }
         }
     }
@@ -91,20 +91,20 @@ class overviewFunctions
 
             /*
             Otherwise aka else, activityInput will be processed, adds a tabspace to correctly format itself
-            and increase the length by one **ASNI Characters are considered as 1 token/length/character despite it looking
-            like it should be 2.
+            and \t aka tab space or ASCNI characters are considered as 1 character not 2.
             */
             activityInput = "\t" + activityInput; 
 
 
+            
             /*
-            If activityInput is less than 8 characters, *\t aka tab space or ASCNI characters are considered 1 character not 2
-            Add spaces to fill it up to 8 or leave it be
-            Because it won't affect weeklyOverview formatting/spacing
+            If activityInput is less than 9 characters because emptyActivty or "\t--------" is 9 characters in length
+            then spaces need to be added for it to correctly place and format itself inside weeklyOverview
             */
             if (activityInput.length() <=9)
             {
-                for (int i = activityInput.length(); i<=9; i++)
+
+                for (int i = activityInput.length(); i<=9; i++) //why activityInput.length() is like that is because it's a String
                 {
                     activityInput += " ";
                 }
@@ -119,43 +119,42 @@ class overviewFunctions
         }
     }
 
+    //Removes an activity from the weeklyOverview
     public static String[][] removeActivity(String[][] weeklyOverview)
     {
-        int dayInput = 0;
-        int timeInput = 0;
-
         System.out.println();//Spacer
-        overviewFunctions.printWeeklyOverview(weeklyOverview);
+        overviewFunctions.printWeeklyOverview(weeklyOverview); //Prints out the Weekly Overview to allow the user to see where and which activity to remove
 
         System.out.println("\n\nSelect the Day & Time of the activity, you wish to delete..."); //Double Spacer
 
-        dayInput = overviewFunctions.dayInput();
-        timeInput = overviewFunctions.timeInput();
+        int dayInput = overviewFunctions.dayInput(); //Asks for the Day of the activity to be removed
+        int timeInput = overviewFunctions.timeInput(); //Asks for the hour of the activity to be removed.
 
-        weeklyOverview[timeInput][dayInput] = emptyActivity;
-        return weeklyOverview;
+        weeklyOverview[timeInput][dayInput] = emptyActivity; //Deletes or in this case, replaces the desired activity to be deleted/replaced with "\t--------"
+        return weeklyOverview; //Returns the updated Weekly Overview
 
     }
 
+    //Replaces an activity
+    public static String[][] replaceActivity(String[][] weeklyOverview)
+    {
 
-public static String[][] replaceActivity(String[][] weeklyOverview)
-{
+        System.out.println();//Spacer
+        
+        overviewFunctions.printWeeklyOverview(weeklyOverview); //Prints out the Weekly Overview to allow the user to see where and which activity to replace
 
-    System.out.println();//Spacer
-    
-    overviewFunctions.printWeeklyOverview(weeklyOverview);
+        System.out.println("\n\n"); //Double Spacer
 
-    System.out.println("\n\n"); //Double Spacer
+        System.out.println("Select the Day & Time of the activity, you wish to delete...");
+        int dayInput = dayInput();
+        int timeInput = timeInput();
+        //input.nextLine(); //Buffer Line; if Input gets fucked in this method, uncomment this to fix it
+        String newActivity = addActivity();
 
-    System.out.println("Select the Day & Time of the activity, you wish to delete...");
-    int dayInput = dayInput();
-    int timeInput = timeInput();
-    String newActivity = addActivity();
+        weeklyOverview[timeInput][dayInput] = newActivity; //Replaces the Activity at the user's desired day and hour.
+        return weeklyOverview;
 
-    weeklyOverview[timeInput][dayInput] = newActivity;
-    return weeklyOverview;
-
-}
+    }
 }
 
 public class main 
@@ -195,6 +194,7 @@ public class main
         };
 
 
+        //Base Menu
         System.out.println("Menu");
         System.out.println("(1) Add Activity");
         System.out.println("(2) Delete Activity");
@@ -219,28 +219,30 @@ public class main
         //Remove an Activity
         else if(userInput.equals("2"))
         {
-            weeklyOverview[2][2] =  "\tSleeping"; //Used for Testing
+            weeklyOverview[2][2] =  "\tSleeping"; //Used for Testing, comment if need be
             weeklyOverview = overviewFunctions.removeActivity(weeklyOverview);
         }
 
-        //Replace Activity
+        //Replaces Activity
         else if(userInput.equals("3"))
         {
             weeklyOverview = overviewFunctions.replaceActivity(weeklyOverview);
         }
 
-        //Invalid Selection of Options/Invalid Input
+        //Invalid Selection of Options/Invalid Input.
         else
         {
         
             System.out.println("Input Not Valid...(Pause Implemented)");
+
+            //Sleep/Pause Screen code for Java, this needs to be done in a try & catch | half-assed explanation, I sowry rushing comments out rn
             try
             {
-                Thread.sleep(2000);
+                Thread.sleep(2000); //Pauses for 2 seconds/2000 Miliseconds, throws a sleep exception
             }
-            catch (InterruptedException e)
+            catch (InterruptedException e) //Sleep exception caught
             {
-                e.printStackTrace();
+                e.printStackTrace(); //Executes sleep/pause of the screen for the set amount of time
             }
         }
 
