@@ -5,6 +5,8 @@ class overviewFunctions
     static Scanner input = new Scanner(System.in); //Makes it accessible within the class.
     static String emptyActivity = "\t--------"; //Sring Value used within weeklyOverview for empty activity/indexes
 
+
+    //Prints the Weekly Overview (In its entirety)
     public static void printWeeklyOverview(String[][] overview)
     {
         //Prints the Weekly Overview
@@ -32,7 +34,7 @@ class overviewFunctions
             //If day is greater than or equal 1 & less than 8
             if (day>=1 && day<8)
             {
-                return day;
+                return day; //Returns day
             }
             else
             {
@@ -73,23 +75,28 @@ class overviewFunctions
         {
 
             System.out.print("What activity? (Ex. Running): ");
-            String activityInput = input.nextLine();//"ILoveAnimeGirlsAndICannotLie :P";//input.nextLine();
+            String activityInput = input.nextLine();//"ILoveAnimeGirlsAndICannotLie :P";//input.nextLine(); used for testing
 
             System.out.println();//Spacer
 
-            System.out.println("Your Activity is: '" + activityInput + "' Is this Correct?");
+            System.out.println("Your Activity is: '" + activityInput + "' Is this Correct?"); //Prints a message asking if this is what the user inputted
             System.out.print("Yes or No?: ");
-            String userInput = input.nextLine();
+            String userInput = input.nextLine(); //User Input for yes or no
 
-            //If the user says "No", then the loop will re-iterate/loop again. Otherwise, activityInput will be processed
-            //To corrrectly format and place itself into the weeklyOverview
+            //If the user says "No", then the loop will re-iterate/loop again.
             if (userInput.equals("No") || !(userInput.equals("Yes")))
             {
                 continue;
             }
 
+            /*
+            Otherwise aka else, activityInput will be processed, adds a tabspace to correctly format itself
+            and increase the length by one **ASNI Characters are considered as 1 token/length/character despite it looking
+            like it should be 2.
+            */
+            activityInput = "\t" + activityInput; 
 
-            activityInput = "\t" + activityInput; //Adds a tabspace to it
+
             /*
             If activityInput is less than 8 characters, *\t aka tab space or ASCNI characters are considered 1 character not 2
             Add spaces to fill it up to 8 or leave it be
