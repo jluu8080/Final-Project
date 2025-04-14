@@ -2,10 +2,18 @@ import javax.swing.*;
 import java.awt.*;
 
 
+
 public class GUItest extends JFrame {
+
+    private JTextField Num1;
+    private JTextField Num2;
+    private JTextField result;
+    private JComboBox<String> dropDown;
+    private JTextArea historyBox;
+
     public GUItest() {
         setTitle("Multi-Panel GUI");
-        setSize(500, 400);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -47,6 +55,12 @@ public class GUItest extends JFrame {
         centerPanel.add(button2);
         centerPanel.add(button3);
 
+        // Action to button
+        /* 
+        button1.addActionListener(new ActionListener({
+
+        }));
+        */
 
     }
 
