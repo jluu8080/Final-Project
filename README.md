@@ -19,7 +19,7 @@ PLEASE!
 | **Finished Input**     | Jason             | 4/6                    | It's in the Jason Branch.                                                 |
 | **Fix Input(4/6)**     | Jason             | 4/13                   | It's in the Jason Branch and you can put inputs more than 8 characters and not misformat|
 | **Delete Input**       | Jason             | 4/13                   | User should be able to delete their input.                                |
-| **Replace Input**      | Jason             |                        | User should be able to replace their input.                               |
+| **Replace Input**      | Jason             | 4/13                    | User should be able to replace their input.                               |
 | **Print All**          | Contributor       |                        | Include updated version, print entire calendar (skeleton in terminal).   |
 | **Fix Hard Coding**    | Jason (Potentially), Please check my branch|                        | Try to index instead of hardcoding.                                       |
 | **Exception Handling** | Contributor        |                        | Input validation for user input (Mon-Sun).                               |
@@ -48,8 +48,8 @@ PLEASE!
 
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
 |-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
-| **Implement Read & Write File Handling**  | Contributor       |    |  Make a code block for reading and writing to files                       |
-| **Save File**         | Contributor       |                        | Make a file to save the content from the weekly overview                 |
+| **Implement Read & Write File Handling**  | Jason       | 4/14    |  Make a code block for reading and writing to files                       |
+| **Save File**         | Jason       |       4/14                 | Make a file to save the content from the weekly overview                 |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
