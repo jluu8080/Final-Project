@@ -181,7 +181,7 @@ public class main
             {
                 for (int j = 0; j< weeklyOverview[i].length; j++)
                 {
-                    if (weeklyOverview[i][j].indexOf("\n") != -1)
+                    if (weeklyOverview[i][j].indexOf("\n") != -1) //If .replace doesn't find the index of "\n" then it returns 1, else it returns the exact index of the character and "\n" is luckily considered as 1 Character
                     {
                         computerFileLine = weeklyOverview[i][j].replace("\n","<br>"); //<br> DOES ABSOLUTELY NOTHING! in the .txt files it's just there as an indicator/a string for a line break/new row
                     }
