@@ -2,6 +2,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 
+//Jason Likes Nuts
+
 //Writing to a File imports
 import java.io.FileWriter;
 import java.io.IOException;
@@ -85,7 +87,7 @@ public class main
         }
         */
 
-        /*
+
         while (true)
         {
             //Base Menu
@@ -160,7 +162,7 @@ public class main
             //System.out.flush(); //Outputs it immediately
             overviewFunctions.printWeeklyOverview(weeklyOverview); //Prints the entire Weekly Overview.
         }
-        */
+
         
         //Clears the Screen
         //System.out.print("\033[H\033[2J");
