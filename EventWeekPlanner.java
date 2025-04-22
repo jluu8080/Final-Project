@@ -1,36 +1,37 @@
+//different imports
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+//import java.awt.event.*;
 import java.util.*;
 import java.util.List;
 
+
+//list of all the days in the week 
 public class EventWeekPlanner extends JFrame {
     private final String[] days = {
         "Monday", "Tuesday", "Wednesday", "Thursday",
         "Friday", "Saturday", "Sunday"
     };
-
+    //color of the days, I picked pastle colors.
     private final Color[] dayColors = {
-        new Color(255, 204, 204),  // Monday - Light Pink
-        new Color(204, 229, 255),  // Tuesday - Light Blue
-        new Color(204, 255, 229),  // Wednesday - Mint
-        new Color(255, 255, 204),  // Thursday - Light Yellow
-        new Color(255, 229, 204),  // Friday - Peach
-        new Color(229, 204, 255),  // Saturday - Lavender
-        new Color(204, 255, 255)   // Sunday - Cyan
+        new Color(255, 204, 204),  // Monday 
+        new Color(204, 229, 255),  // Tuesday 
+        new Color(204, 255, 229),  // Wednesday 
+        new Color(255, 255, 204),  // Thursday 
+        new Color(255, 229, 204),  // Friday 
+        new Color(229, 204, 255),  // Saturday 
+        new Color(204, 255, 255)   // Sunday 
     };
 
     // Stores events per day
     private final Map<String, List<Event>> eventMap = new HashMap<>();
 
     public EventWeekPlanner() {
-
+        //title of the planner, set position and font size as needed
         setTitle("Weekly Event Planner");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(900, 600);
         setLayout(new BorderLayout());
-
-        // Title
         JLabel titleLabel = new JLabel("Weekly Event Planner", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
         titleLabel.setForeground(Color.BLACK);
@@ -52,10 +53,11 @@ public class EventWeekPlanner extends JFrame {
             eventMap.put(day, new ArrayList<>());
         }
 
-        // Create day buttons
+        // Create day buttons, create them in the center, all 7 should have the same size.
         for (int i = 0; i < days.length; i++) {
             String day = days[i];
-            JButton dayButton = new JButton("<html><center><b>" + day + "</b><br/></center></html>");
+            //needs to be fixed, the days should appear on the top, not center.
+            JButton dayButton = new JButton("<html><top><b>" + day + "</b><br/></top></html>");
             dayButton.setBackground(dayColors[i]);
             dayButton.setOpaque(true);
             dayButton.setBorderPainted(false);
@@ -64,7 +66,7 @@ public class EventWeekPlanner extends JFrame {
             gridPanel.add(dayButton);
         }
 
-        // Final block for Add/Delete functionality
+        // Final block for Add/Delete/Replace functionality
         JPanel controlPanel = new JPanel(new GridLayout(3, 1, 5, 5));
         controlPanel.setOpaque(false);
         JButton addButton = new JButton("Add Event");
@@ -81,7 +83,7 @@ public class EventWeekPlanner extends JFrame {
         setVisible(true);
     }
 
-    // Add event dialog
+    // Add button
     private void addEventDialog() {
         JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
         JTextField nameField = new JTextField();
@@ -98,7 +100,7 @@ public class EventWeekPlanner extends JFrame {
 
         int result = JOptionPane.showConfirmDialog(this, new Object[]{dayBox, panel},
                 "Add New Event", JOptionPane.OK_CANCEL_OPTION);
-
+    //exception handling 
         if (result == JOptionPane.OK_OPTION) {
             String name = nameField.getText().trim();
             String time = timeField.getText().trim();
@@ -110,7 +112,9 @@ public class EventWeekPlanner extends JFrame {
                 eventMap.get(day).add(event);
                 sortEvents(day);
                 JOptionPane.showMessageDialog(this, "Event added to " + day + ".");
-            } else {
+            } 
+            //add another segment of code that excludes hour exceding 12, minute exceeding 60.
+            else {
                 JOptionPane.showMessageDialog(this, "Please enter a valid name and time (e.g. 3:30).");
             }
         }
@@ -169,7 +173,7 @@ public class EventWeekPlanner extends JFrame {
                         break;
                     }
                 }
-
+                //exception handling, make sure new event is not the same as the original one.
                 if (original != null) {
                     String newName = JOptionPane.showInputDialog(
                             this, "Enter new event name:", original.name);
@@ -218,7 +222,7 @@ public class EventWeekPlanner extends JFrame {
             this.time = time;
             this.amPm = amPm;
         }
-
+        //comvert military time, make sure to put events in chronological order.
         public String get24HourTime() {
             try {
                 String[] parts = time.split(":");
