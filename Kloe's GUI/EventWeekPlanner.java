@@ -68,16 +68,23 @@ public class EventWeekPlanner extends JFrame {
             JButton dayButton = new JButton(day); //Makes each day a button
             
             //Day Button Appearances//
-            dayButton.setBackground(dayColors[i]); //Each day has its own special color
+            dayButton.setBackground(dayColors[i]); //Allows the Buttons to blend with the background color of their boxes/panel
             dayButton.setBorderPainted(false); //Removes Black Border around buttons
             dayButton.setFont(new Font("Times New Roman", Font.BOLD, 34));//Sets the Font for the buttons/day button
+            dayButton.setMaximumSize(new Dimension(210, 40)); //Forces this size to be used
 
 
             //Adds Button Functionality for each day
             dayButton.addActionListener(e -> PlannerUtilities.handleDayClick((Component) this, day,eventMap));
 
-            //Adds the button to gridPanel
-            gridPanel.add(dayButton);
+            
+            //Adds the Day Buttons to the Top of their respective boxes
+            JPanel dayPanel = new JPanel(); //Made a Panel for each day to go inside the GridPanel to prevent autosizing from the gridPanel.
+            dayPanel.setLayout(new BoxLayout(dayPanel, BoxLayout.Y_AXIS)); 
+            dayPanel.setBackground(dayColors[i]);
+
+            dayPanel.add(dayButton);
+            gridPanel.add(dayPanel);
         }
 
 

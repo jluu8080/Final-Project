@@ -22,6 +22,30 @@ public class PlannerUtilities
         eventMap.get(day).sort(Comparator.comparing(Event::get24HourTime)); //Calls get24HourTime when needed instead of immediately using :: - Method Reference
     }
 
+    //comvert military time, make sure to put events in chronological order.
+    static boolean validTimeInput(Component comp, String time) {
+        try {
+            String[] parts = time.split(":");
+            int hour = Integer.parseInt(parts[0]);
+            int min = Integer.parseInt(parts[1]);
+
+            if (hour > 12 || min > 59)
+            {
+                throw new Exception("Hour and or Minute enter has exceed acceptable values: Hour < 12 & min < 59");
+            }
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(comp, "Invalid Input for Time");
+        }
+        catch (Exception e)
+        {
+            JOptionPane.showMessageDialog(comp, "Invalid Input for Time");
+        }
+        return false;
+    }
+
 
     //Day Button Functionality
     static void handleDayClick(Component comp, String day, Map<String, List<Event>> eventMap) {
@@ -97,16 +121,20 @@ public class PlannerUtilities
             //If the name textbox isn't empty & the time textbox matches the given format: (HH:MM)
             if (!name.isEmpty() && time.matches("\\d{1,2}:\\d{2}")) {
                 
-                //Fills the arrayList for the days with the name, time, & amPm values
-                Event event = new Event(name, time, amPm); 
+                if (validTimeInput(comp, time) == true)
+                {
+                    //Fills the arrayList for the days with the name, time, & amPm values
+                    Event event = new Event(name, time, amPm); 
 
-                //Shouldn't I return this? No! Passes by Reference gets updated in real-time
-                eventMap.get(day).add(event);
-                
-                //Sorts the days in order
-                sortEvents(day, eventMap);
+                    //Shouldn't I return this? No! Passes by Reference gets updated in real-time
+                    eventMap.get(day).add(event);
+                    
+                    //Sorts the days in order
+                    sortEvents(day, eventMap);
 
-                JOptionPane.showMessageDialog(comp, "Event added to " + day + ".");
+                    JOptionPane.showMessageDialog(comp, "Event added to " + day + ".");
+                }
+
             } 
             //add another segment of code that excludes hour exceding 12, minute exceeding 60.
             else {
@@ -170,6 +198,7 @@ public class PlannerUtilities
                 return;
             }
 
+
             String[] eventStrings = dayEvents.stream().map(Event::toString).toArray(String[]::new);
             String selectedEvent = (String) JOptionPane.showInputDialog(
                     comp, "Select event to replace:",
@@ -192,6 +221,7 @@ public class PlannerUtilities
                     if (newName != null && !newName.trim().isEmpty()) {
                         // Replace with new event name, same time/AMPM
                         Event updated = new Event(newName.trim(), original.getTime(), original.getAM_PM());
+                        
                         dayEvents.remove(original);
                         dayEvents.add(updated);
                         //Sorts the days in order
@@ -205,23 +235,4 @@ public class PlannerUtilities
         }
     }
 
-
-
-    /*
-    //comvert military time, make sure to put events in chronological order.
-    public String get24HourTime() {
-        try {
-            String[] parts = time.split(":");
-            int hour = Integer.parseInt(parts[0]);
-            int min = Integer.parseInt(parts[1]);
-            if (amPm.equals("PM") && hour != 12) hour += 12;
-            if (amPm.equals("AM") && hour == 12) hour = 0;
-            return String.format("%02d:%02d", hour, min);
-        }
-        catch (Exception e)
-        {
-            return "99:99"; // fallback
-        }
-    }
-    */
 }
