@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -203,46 +204,86 @@ public class PlannerUtilities
                     null, eventStrings, eventStrings[0]);
 
             if (selectedEvent != null) {
-                Event original = null;
-                for (Event e : dayEvents) {
-                    if (e.toString().equals(selectedEvent)) {
-                        original = e;
-                        break;
-                    }
-                }
+    Event original = null;
+    for (Event e : dayEvents) {
+        if (e.toString().equals(selectedEvent)) {
+            original = e;
+            break;
+        }
+    }
 
-                //exception handling, make sure new event is not the same as the original one.
-                if (original != null) {
-                    String newName = JOptionPane.showInputDialog(
-                            comp, "Enter new event name:", original.getName());
-                    if (newName != null && !newName.trim().isEmpty()) {
-                        // Replace with new event name, same time/AMPM
-                        String newTime = JOptionPane.showInputDialog(
-                                comp, "Enter new event time (HH:MM):", original.getTime());
-                        if (newTime != null && !newTime.trim().isEmpty()) {
-                            if (validTimeInput(comp, newTime)) {
-                                Event updated = new Event(newName.trim(), newTime.trim(), original.getAM_PM());
+    if (original != null) {
+        // Create a panel to combine all inputs (name, time, AM/PM, and day)
+        JPanel inputPanel = new JPanel(new GridLayout(4, 2));
 
-                                dayEvents.remove(original);
-                                dayEvents.add(updated);
-                                //Sorts the events for the day
-                                sortEvents(selectedDay, eventMap);
-                                JOptionPane.showMessageDialog(comp, "Event updated.");
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(comp, "Invalid time format. Event not updated.");
-                            }
-                        } 
-                    } 
-                    else {
-                        JOptionPane.showMessageDialog(comp, "Event time cannot be empty.");
-                    }
-                } 
-                else {
-                    JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");
-                }
-                
+        // Input for new event name
+        inputPanel.add(new JLabel("Enter new event name:"));
+        JTextField nameField = new JTextField(original.getName());
+        inputPanel.add(nameField);
+
+        // Input for new event time
+        inputPanel.add(new JLabel("Enter new event time (HH:MM):"));
+        JTextField timeField = new JTextField(original.getTime());
+        inputPanel.add(timeField);
+
+        // Dropdown for AM/PM selection
+        inputPanel.add(new JLabel("Select AM or PM:"));
+        String[] amPmOptions = {"AM", "PM"};
+        JComboBox<String> amPmBox = new JComboBox<>(amPmOptions);
+        amPmBox.setSelectedItem(original.getAM_PM());
+        inputPanel.add(amPmBox);
+
+        // Dropdown for selecting a new day
+        inputPanel.add(new JLabel("Select new day:"));
+        String[] daysOfWeek = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        JComboBox<String> dayBox = new JComboBox<>(daysOfWeek);
+        dayBox.setSelectedItem(selectedDay); // Pre-select the current day
+        inputPanel.add(dayBox);
+
+        // Show the combined dialog
+        int result = JOptionPane.showConfirmDialog(
+                comp, inputPanel, "Update Event Details", JOptionPane.OK_CANCEL_OPTION);
+
+        if (result == JOptionPane.OK_OPTION) {
+            // Get user inputs
+            String newName = nameField.getText().trim();
+            String newTime = timeField.getText().trim();
+            String selectedAmPm = (String) amPmBox.getSelectedItem();
+            String newDay = (String) dayBox.getSelectedItem();
+
+            // Validate inputs
+            if (newName.isEmpty()) {
+                JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");
+                return;
             }
+            if (newTime.isEmpty() || !validTimeInput(comp, newTime)) {
+                JOptionPane.showMessageDialog(comp, "Invalid time format. Event not updated.");
+                return;
+            }
+
+            // Create the updated event
+            Event updated = new Event(newName, newTime, selectedAmPm);
+
+            // Remove the original event and add the updated event to the new day
+            if (!newDay.equals(selectedDay)) {
+                eventMap.get(selectedDay).remove(original);
+                if (eventMap.get(newDay) == null) {
+                    eventMap.put(newDay, new ArrayList<>());
+                }
+                eventMap.get(newDay).add(updated);
+                sortEvents(newDay, eventMap);
+            } else {
+                dayEvents.remove(original);
+                dayEvents.add(updated);
+                sortEvents(selectedDay, eventMap);
+            }
+
+            JOptionPane.showMessageDialog(comp, "Event updated.");
+        } else {
+            JOptionPane.showMessageDialog(comp, "Event update canceled.");
+        }
+    }
+}
         }
     }
 
