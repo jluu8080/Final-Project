@@ -24,14 +24,14 @@ public class PlannerUtilities
         eventMap.get(day).sort(Comparator.comparing(Event::get24HourTime)); //Calls get24HourTime when needed instead of immediately using :: - Method Reference
     }
 
+    //Validates time input
     static boolean validTimeInput(Component comp, String time) {
         try {
             String[] parts = time.split(":");
             int hour = Integer.parseInt(parts[0]);
             int min = Integer.parseInt(parts[1]);
 
-            if (hour > 12 || min > 59)
-            {
+            if (hour <= 0 || hour > 12 || min < 0 || min > 59) {
                 throw new Exception("Hour and or Minute enter has exceed acceptable values: Hour < 12 & min < 59");
             }
             return true;
@@ -220,17 +220,31 @@ public class PlannerUtilities
                             comp, "Enter new event name:", original.getName());
                     if (newName != null && !newName.trim().isEmpty()) {
                         // Replace with new event name, same time/AMPM
-                        Event updated = new Event(newName.trim(), original.getTime(), original.getAM_PM());
-                        
-                        dayEvents.remove(original);
-                        dayEvents.add(updated);
-                        //Sorts the days in order
-                        sortEvents(selectedDay, eventMap);
-                        JOptionPane.showMessageDialog(comp, "Event updated.");
-                    } else {
-                        JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");
+                        String newTime = JOptionPane.showInputDialog(
+                                comp, "Enter new event time (HH:MM):", original.getTime());
+                        if (newTime != null && !newTime.trim().isEmpty()) {
+                            if (validTimeInput(comp, newTime)) {
+                                Event updated = new Event(newName.trim(), newTime.trim(), original.getAM_PM());
+
+                                dayEvents.remove(original);
+                                dayEvents.add(updated);
+                                //Sorts the events for the day
+                                sortEvents(selectedDay, eventMap);
+                                JOptionPane.showMessageDialog(comp, "Event updated.");
+                            }
+                            else {
+                                JOptionPane.showMessageDialog(comp, "Invalid time format. Event not updated.");
+                            }
+                        } 
+                    } 
+                    else {
+                        JOptionPane.showMessageDialog(comp, "Event time cannot be empty.");
                     }
+                } 
+                else {
+                    JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");
                 }
+                
             }
         }
     }
