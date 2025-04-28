@@ -90,26 +90,27 @@ public class EventWeekPlanner extends JFrame {
         }
 
 
-        //Make another panel inside that panel
-        JPanel controlPanel = new JPanel(new GridLayout(3, 1, 5, 5)); //Make the panel with 3 rows & 1 Column for the buttons
+        //Make another panel inside that gridPanel
+        JPanel controlPanel = new JPanel(new GridLayout(4, 1, 5, 5)); //Make the panel with 4 rows & 1 Column for the buttons
 
         //Declare all the Add/Delete/Replace Buttons
         JButton addButton = new JButton("Add Event");
         JButton deleteButton = new JButton("Delete Event");
         JButton replaceButton = new JButton("Replace Event");
+        JButton saveButton = new JButton("Save");
 
 
         //Adds Functionality for all these buttons
         addButton.addActionListener(e -> PlannerUtilities.addEventDialog((Component) this, days, eventMap));
         deleteButton.addActionListener(e -> PlannerUtilities.deleteEventDialog((Component) this, days, eventMap));
         replaceButton.addActionListener(e -> PlannerUtilities.replaceEventDialog((Component) this, days, eventMap));
-        //saveButton.addActionListener(e -> PlannerUtilities.saveEventDialog((Component) this, days, eventMap));
+        saveButton.addActionListener(e -> PlannerUtilities.saveEventDialog((Component) this, days, eventMap));
 
         //Adds all the add/delete/replace buttons into the Control Panel
         controlPanel.add(addButton);
         controlPanel.add(deleteButton);
         controlPanel.add(replaceButton);
-        //controlPanel.add(saveButton);
+        controlPanel.add(saveButton);
 
         //Adds the controlPanel into the gridPanel aka into the Artwork
         gridPanel.add(controlPanel);
