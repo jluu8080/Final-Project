@@ -61,6 +61,7 @@ public class EventWeekPlanner extends JFrame {
         {
             eventMap.put(day, new ArrayList<>()); //Adds the keys/days which unlocks an ArrayList aka Safe Contents
         }
+
         //Adds Day buttons and their functionality, adding them to gridPanel aka the Artwork inside a frame
         for (int i = 0; i < days.length; i++) { 
             String day = days[i];
@@ -80,9 +81,10 @@ public class EventWeekPlanner extends JFrame {
             
             //Adds the Day Buttons to the Top of their respective boxes
             JPanel dayPanel = new JPanel(); //Made a Panel for each day to go inside the GridPanel to prevent autosizing from the gridPanel.
-            dayPanel.setLayout(new BoxLayout(dayPanel, BoxLayout.Y_AXIS)); 
-            dayPanel.setBackground(dayColors[i]);
+            dayPanel.setLayout(new BoxLayout(dayPanel, BoxLayout.Y_AXIS)); //Vertical allignment for the Day Buttons
+            dayPanel.setBackground(dayColors[i]); //Make the dayPanels blend in the gridPanel
 
+            //Adds the Button & day panels together
             dayPanel.add(dayButton);
             gridPanel.add(dayPanel);
         }
@@ -101,12 +103,13 @@ public class EventWeekPlanner extends JFrame {
         addButton.addActionListener(e -> PlannerUtilities.addEventDialog((Component) this, days, eventMap));
         deleteButton.addActionListener(e -> PlannerUtilities.deleteEventDialog((Component) this, days, eventMap));
         replaceButton.addActionListener(e -> PlannerUtilities.replaceEventDialog((Component) this, days, eventMap));
-
+        //saveButton.addActionListener(e -> PlannerUtilities.saveEventDialog((Component) this, days, eventMap));
 
         //Adds all the add/delete/replace buttons into the Control Panel
         controlPanel.add(addButton);
         controlPanel.add(deleteButton);
         controlPanel.add(replaceButton);
+        //controlPanel.add(saveButton);
 
         //Adds the controlPanel into the gridPanel aka into the Artwork
         gridPanel.add(controlPanel);
