@@ -9,7 +9,7 @@ PLEASE!
 4. If you need help, just ask :)
 # Project Timeline
 
-## Skeleton (Due: April 14th)
+## Skeleton (Due: 5/2/25)
 ### To Do List
 
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
