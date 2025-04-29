@@ -14,43 +14,24 @@ PLEASE!
 
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
 |-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
-| **Add Time Function**  | Kloe              | 4/5                    | A loop of all the hours in the day.                                        |
-| **Fix Time Format**    | Content Cell      | 4/5                    | Formatting issue; Jason decided to hardcode it with a 2D array.           |
-| **Finished Input**     | Jason             | 4/6                    | It's in the Jason Branch.                                                 |
-| **Fix Input(4/6)**     | Jason             | 4/13                   | It's in the Jason Branch and you can put inputs more than 8 characters and not misformat|
-| **Delete Input**       | Jason             | 4/13                   | User should be able to delete their input.                                |
-| **Replace Input**      | Jason             | 4/13                    | User should be able to replace their input.                               |
-| **Print All**          | Contributor       |                        | Include updated version, print entire calendar (skeleton in terminal).   |
-| **Fix Hard Coding**    | Jason (Potentially), Please check my branch|                        | Try to index instead of hardcoding.                                       |
-| **Exception Handling** | Contributor        |                        | Input validation for user input (Mon-Sun).                               |
-| **Exception Handling** | Contributor        |                        | Input validation for user input (12am-11pm).                             |
-| **Code Menu**          | Contributor        |                        | User selects: 1 for add, 2 for delete, 3 for replace, 4 for view all.    |
-| **Exception Handling** | Contributor        |                        | Input validation for menu options (1-4).                                 |
-
+| **Add Time Function**  | Kloe             | 4/5                    | A loop of all the hours in the day.                                       |
+| **Fix Time Format**    | Kloe             | 4/5                    | Formatting issue; Jason decided to hardcode it with a 2D array.           |
+| **Finished Input**     | Jason            | 4/6                    | It's in the Jason Branch.                                                 |
+| **Fix Input(4/6)**     | Jason            | 4/13                   |  you can put inputs more than 8 characters and not misformat              |
+| **Delete Input**       | Jason            | 4/13                   | User should be able to delete their input.                                |
+| **Replace Input**      | Jason            | 4/13                   | User should be able to replace their input.                               |
+| **Print All**          | Jason            | 4/19                   | Include updated version, print entire calendar (skeleton in terminal).    |
+| **Fix Hard Coding**    | Jason + Kloe     | 4/25                   | We abolished the hard coded code                                          |
+| **Exception Handling** | Kloe             | 4/21                   | Input validation for user input (non integer input).                      |
+| **Exception Handling** | Jason            | 4/25                   | Input validation for user input (12am-11pm).                              |
+| **Additional Buttons **| Kloe + Jason     |4/22                    | Add, delete, replace, save                                                |
+| **comments           **| Kloe + Jason     |4/25                    | improve code readibility                                                  |
 ---
 
 ## GUI
 
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
 |-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
-| **GUI Buttons**       | Contributor       |                        | User should have buttons to click on when they've finished typing their input|
-| **GUI Menu**          | Contributor       |                        | Add a Menu to allow the user to input times and goals as well as view Weekly Overview|
-| **GUI Weekly Overview**| Contributor      |                        | Implement the content from the weekly overview to be outputted to the GUI |
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
-
----
-## File handling
-
-| **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
-|-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
-| **Implement Read & Write File Handling**  | Jason       | 4/14    |  Make a code block for reading and writing to files                       |
-| **Save File**         | Jason       |       4/14                 | Make a file to save the content from the weekly overview                 |
-| **Integrate Save File Code w/ Menu*             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
