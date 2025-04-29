@@ -25,15 +25,15 @@ PLEASE!
 | **Exception Handling** | Kloe             | 4/21                   | Input validation for user input (non integer input).                      |
 | **Exception Handling** | Jason            | 4/25                   | Input validation for user input (12am-11pm).                              |
 | **Additional Buttons **| Kloe + Jason     |4/22                    | Add, delete, replace, save                                                |
-| **comments           **| Kloe + Jason     |4/25                    | improve code readibility                                                  |
+| **Comments           **| Kloe + Jason     |4/25                    | improve code readibility                                                  |
 ---
 
 ## GUI
 
 | **Task**              | **Contributor**   | **Date of Completion** | **Description**                                                           |
 |-----------------------|-------------------|------------------------|---------------------------------------------------------------------------|
-| **To Do**             | Contributor       |                        |                                                                           |
-| **To Do**             | Contributor       |                        |                                                                           |
+|  **General skeleton** | Kloe              | 4/25                   | Added a 2 by 4 block, along with Pastel colors                            |
+| **Put title on top**  | Jason             | 4/26                   | Title was originally added in the center, now it is on top.               |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
 | **To Do**             | Contributor       |                        |                                                                           |
