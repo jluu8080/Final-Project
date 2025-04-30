@@ -5,8 +5,12 @@ import java.util.Map;
 
 import java.awt.*;
 
-//different imports
 import javax.swing.*;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
+
 
 public class PlannerUtilities
 {
@@ -21,7 +25,7 @@ public class PlannerUtilities
         eventMap.get(day).sort(Comparator.comparing(Event::get24HourTime)); //Calls get24HourTime when needed instead of immediately using :: - Method Reference
     }
 
-    //Validates the time input
+    //Validates time input
     static boolean validTimeInput(Component comp, String time) {
         try {
             String[] parts = time.split(":");
@@ -149,7 +153,6 @@ public class PlannerUtilities
         //Makes an intial Pop-up Window
         String selectedDay = (String) JOptionPane.showInputDialog(
             comp, "Select Day:", "Delete Event",JOptionPane.QUESTION_MESSAGE, null, days, days[0]
-
         );
 
         //If the user didn't close the window or hit "Cancel".
@@ -289,11 +292,65 @@ public class PlannerUtilities
 
 
     //Save Button Functionality
-    /*
-    static void replaceEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap)
+    static void saveEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap)
     {
-        JFileChooser = 
-    {
-    */
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(comp);
+
+        //If the user chose to save a file
+        if (result == JFileChooser.APPROVE_OPTION)
+        {
+            File saveFile = fileChooser.getSelectedFile();
+
+            //If the file saved by the user, doesn't have .txt add the end, it will add it for them.
+            if (!saveFile.getName().toLowerCase().endsWith(".txt")) 
+            {
+                saveFile = new File(saveFile.getAbsolutePath() + ".txt");
+            }
+
+            //Saving the Weekly Overview to savedSchedule(User-View).txt
+            try
+            {
+                FileWriter writer1 = new FileWriter(saveFile); //Overwrite Mode
+                
+                for(int i = 0; i <days.length; i++)
+                {
+                    writer1.write(days[i] + "\n");
+                    
+                    String dayKey = days[i];
+                    List<Event> eventsList = eventMap.get(dayKey);
+
+
+                    //If the events are empty
+                    if (eventsList != null)
+                    {
+                        for(Event event : eventsList)
+                        {
+                            writer1.write(" - " + event.toString() + "\n");
+                        }
+                        
+                    }
+                    writer1.write("\n\n"); //Spacer
+
+
+                }
+                writer1.close();
+                System.out.println("File Written Successfully! ");
+
+                //Closes Main Window/Program
+                if (comp instanceof Window)
+                {
+                    ((Window) comp).dispose();
+                }
+            }
+            catch (IOException e)
+            {
+                System.out.println("Unable to write to file...");
+                e.printStackTrace();
+            }
+
+        }
+
+    }
 
 }
