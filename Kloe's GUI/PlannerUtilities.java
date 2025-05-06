@@ -212,7 +212,29 @@ public class PlannerUtilities
                 dayEvents.removeIf(e -> e.toString().equals(selectedEvent));
                 JOptionPane.showMessageDialog(comp, "Event deleted.");
             }
+            if (gridPanel instanceof JPanel) {
+                gridPanel.removeAll();
+                gridPanel.revalidate();
+                gridPanel.repaint();
             
+                for (int i = 0; i < dayPanelList.size(); i++) {
+                    JPanel dayPanel = dayPanelList.get(i);
+                    String day = days[i];
+                    for (Component comp1 : dayPanel.getComponents()) {
+                        if (comp1 instanceof JTextArea) {
+                            JTextArea textArea = (JTextArea) comp1;
+                            textArea.setText(" "); // Clear first
+                            for (Event e : eventMap.get(day)) {
+                                textArea.append("\n- " + e.toString());
+                            }
+                        }
+                    }
+                    gridPanel.add(dayPanel);
+                }
+            
+                gridPanel.add(controlPanel);
+            }
+        /*
             JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
         
         //Adds a Day ComboBox
@@ -286,19 +308,24 @@ public class PlannerUtilities
                                 textArea.setText(currentText + " \n" +  "- " + event.toString()); //Sets the new text in the text area with the new event
                                 break;
                                 */
-                            }
-                        }
-                        
+                            //}
+                        //}
+                        /* 
                         for (int i = 0; i< dayPanelList.size(); i++)
                         {
                             gridPanel.add(dayPanelList.get(i)); //Adds the dayPanel to the gridPanel
                         }
                         gridPanel.add(controlPanel); //Adds the controlPanel to the gridPanel
+
                     }
+                        */
+                }
             }
         }
-    }
-}
+            //}
+        //}
+    //}
+//}
          
         
 
