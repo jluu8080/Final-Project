@@ -305,170 +305,129 @@ public class PlannerUtilities
 
     //Replace Button Functionality
     static void replaceEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap, JPanel gridPanel, JPanel controlPanel, ArrayList<JPanel> dayPanelList) {
-
-        //Makes a pop-up window
+        // Makes a pop-up window
         String selectedDay = (String) JOptionPane.showInputDialog(
                 comp, "Select Day:", "Replace Event",
-                JOptionPane.QUESTION_MESSAGE, null, days, days[0]); //JOptionPane.QUESTION_MESSAGE = Icon of a question mark
-
-        //If user picks a day and doesn't close the window
+                JOptionPane.QUESTION_MESSAGE, null, days, days[0]);
+    
+        // If user picks a day and doesn't close the window
         if (selectedDay != null) {
-            List<Event> dayEvents = eventMap.get(selectedDay);//Grabs the List of events for the day the user selected in the dropdown box
-            if (dayEvents.isEmpty()) {
-                JOptionPane.showMessageDialog(comp, "No events to replace for " + selectedDay);//If the day is empty, it will pop up a message saying so.
+            List<Event> dayEvents = eventMap.get(selectedDay); // Grabs the List of events for the selected day
+            if (dayEvents == null || dayEvents.isEmpty()) {
+                JOptionPane.showMessageDialog(comp, "No events to replace for " + selectedDay);
                 return;
             }
-
-
+    
             String[] eventStrings = dayEvents.stream().map(Event::toString).toArray(String[]::new);
-            String selectedEvent = (String) JOptionPane.showInputDialog(  //Makes another pop-up window to replace events for the selected day
+            String selectedEvent = (String) JOptionPane.showInputDialog(
                     comp, "Select event to replace:",
                     "Replace Event", JOptionPane.PLAIN_MESSAGE,
-                    null, eventStrings, eventStrings[0]);//JOptionPane.PLAIN_MESSAGE = No Icon
-
+                    null, eventStrings, eventStrings[0]);
+    
             if (selectedEvent != null) {
-                Event original = null;//Holds the original event to be replaced
+                Event original = null;
                 for (Event e : dayEvents) {
                     if (e.toString().equals(selectedEvent)) {
-                        original = e;//Finds the event that matches the selected event string
+                        original = e;
                         break;
                     }
                 }
-
-                //exception handling, make sure new event is not the same as the original one.
+    
                 if (original != null) {
-                    String newName = JOptionPane.showInputDialog(
-                            comp, "Enter new event name:", original.getName());//Asks the user for a new name for the event
-                    if (newName != null && !newName.trim().isEmpty()) {
-                        // Replace with new event name, same time/AMPM
-                        String newTime = JOptionPane.showInputDialog(
-                                comp, "Enter new event time (HH:MM):", original.getTime());//Asks the user for a new time for the event
-                        if (newTime != null && !newTime.trim().isEmpty()) {
-
-                            if (validTimeInput(comp, newTime)) {
-                                Event updated = new Event(newName.trim(), newTime.trim(), original.getAM_PM());//Creates a new event with the new name and time, but keeps the same AM/PM value as the original event
-                                //Removes the original event and adds the updated event to the list
-                                dayEvents.remove(original);
-                                //Checks if the updated event already exists in the list
-                                dayEvents.add(updated);
-                                //Sorts the events for the day
-                                sortEvents(selectedDay, eventMap);
-                                JOptionPane.showMessageDialog(comp, "Event updated.");
-                            }
-                            else {
-                                JOptionPane.showMessageDialog(comp, "Invalid time format. Event not updated.");//If the time format is invalid, it will pop up a message saying so.
-                            }
-                        } 
-                    } 
-                    else {
-                        JOptionPane.showMessageDialog(comp, "Event time cannot be empty.");//If the user doesn't enter a new time, it will pop up a message saying so.
-                    }
-                } 
-                else {
-                    JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");//If the user doesn't enter a new name, it will pop up a message saying so.
-                }
-        JPanel panel = new JPanel(new GridLayout(3, 2, 5, 5));
+                    // Create a panel to combine all inputs (name, time, AM/PM, and day)
+                    JPanel inputPanel = new JPanel(new GridLayout(4, 2));
     
-        //Adds a Day ComboBox
-        JComboBox<String> dayBox = new JComboBox<>(days);
-
-        //"Event Name: " Label & its TextBox
-        JLabel nameLabel = new JLabel("Event Name:");
-        JTextField nameField = new JTextField();
-
-        //"Event Time (HH:MM):" Label & its TextBox
-        JLabel timeLabel = new JLabel("Event Time (HH:MM):");
-        JTextField timeField = new JTextField();
-
-        //"AM/PM:" Label & its ComboBox
-        JLabel amPMLabel = new JLabel("AM/PM:");
-        JComboBox<String> amPmBox = new JComboBox<>(new String[]{"AM", "PM"});
-
-        //Adds name Label & Its Textbox
-        panel.add(nameLabel);
-        panel.add(nameField);
+                    // Input for new event name
+                    inputPanel.add(new JLabel("Enter new event name:"));
+                    JTextField nameField = new JTextField(original.getName());
+                    inputPanel.add(nameField);
     
-        //Adds time label & its TextBox
-        panel.add(timeLabel);
-        panel.add(timeField);
-        
-        //Adds amPm Label & its ComboBox
-        panel.add(amPMLabel);
-        panel.add(amPmBox);
-
-        int result = JOptionPane.showConfirmDialog(comp, new Object[]
-        {dayBox, panel},"Add New Event", JOptionPane.OK_CANCEL_OPTION);
-        
-        
-        //exception handling for the pop-up Window
-        if (result == JOptionPane.OK_OPTION) {
-            String name = nameField.getText().trim(); //trims trailing/leading spaces
-            String time = timeField.getText().trim(); //trims trailin/leading spaces
-            String amPm = (String) amPmBox.getSelectedItem(); //Grabs text from the dropdown box for AM & PM
-            String day = (String) dayBox.getSelectedItem(); //Grabs the text from the dropdown box for days
-            int selectedDayIndex = dayBox.getSelectedIndex(); //Grabs the day the user selected
-
-            //If the name textbox isn't empty & the time textbox matches the given format: (HH:MM)
-            if (!name.isEmpty() && time.matches("\\d{1,2}:\\d{2}")) {
-                
-                if (validTimeInput(comp, time) == true)
-                {
-                    //Fills the arrayList for the days with the name, time, & amPm values
-                    Event event = new Event(name, time, amPm); 
-
-                    //Shouldn't I return this? No! Passes by Reference gets updated in real-time
-                    eventMap.get(day).add(event);
-                    
-                    //Sorts the days in order
-                    sortEvents(day, eventMap);
-
-                    JOptionPane.showMessageDialog(comp, "Event added to " + day + ".");
-
-                    //Refreshes gridPanel with updated events
-                    if (gridPanel instanceof JPanel)
-                    {
-                        gridPanel.removeAll(); //Removes all the components from the gridPanel
-                        gridPanel.revalidate(); //Revalidates the gridPanel to update the layout
-                        gridPanel.repaint(); //Repaints the gridPanel to show the updated layout
-
-                        for (Component dayPanel : (dayPanelList.get(selectedDayIndex)).getComponents())
-                        {
-                            if (dayPanel instanceof JTextArea)
-                            {
-                                ((JTextArea) dayPanel).setText(" "); //Clears the text area for the day selected
-                                for (Event event1 : eventMap.get(day))
-                                {
-                                    ((JTextArea) dayPanel).append("\n" + "- " + event1.toString()); //Adds the event to the text area for the day selected
-                                    
+                    // Input for new event time
+                    inputPanel.add(new JLabel("Enter new event time (HH:MM):"));
+                    JTextField timeField = new JTextField(original.getTime());
+                    inputPanel.add(timeField);
+    
+                    // Dropdown for AM/PM selection
+                    inputPanel.add(new JLabel("Select AM or PM:"));
+                    JComboBox<String> amPmBox = new JComboBox<>(new String[]{"AM", "PM"});
+                    amPmBox.setSelectedItem(original.getAM_PM());
+                    inputPanel.add(amPmBox);
+    
+                    // Dropdown for selecting a new day
+                    inputPanel.add(new JLabel("Select new day:"));
+                    JComboBox<String> dayBox = new JComboBox<>(days);
+                    dayBox.setSelectedItem(selectedDay);
+                    inputPanel.add(dayBox);
+    
+                    // Show the combined dialog
+                    int result = JOptionPane.showConfirmDialog(
+                            comp, inputPanel, "Update Event Details", JOptionPane.OK_CANCEL_OPTION);
+    
+                    if (result == JOptionPane.OK_OPTION) {
+                        // Get user inputs
+                        String newName = nameField.getText().trim();
+                        String newTime = timeField.getText().trim();
+                        String selectedAmPm = (String) amPmBox.getSelectedItem();
+                        String newDay = (String) dayBox.getSelectedItem();
+    
+                        // Validate inputs
+                        if (newName.isEmpty()) {
+                            JOptionPane.showMessageDialog(comp, "Event name cannot be empty.");
+                            return;
+                        }
+                        if (newTime.isEmpty() || !validTimeInput(comp, newTime)) {
+                            JOptionPane.showMessageDialog(comp, "Invalid time format. Event not updated.");
+                            return;
+                        }
+    
+                        // Create the updated event
+                        Event updated = new Event(newName, newTime, selectedAmPm);
+    
+                        // Remove the original event and add the updated event to the new day
+                        if (!newDay.equals(selectedDay)) {
+                            dayEvents.remove(original);
+                            if (eventMap.get(newDay) == null) {
+                                eventMap.put(newDay, new ArrayList<>());
+                            }
+                            eventMap.get(newDay).add(updated);
+                            sortEvents(newDay, eventMap);
+                        } else {
+                            dayEvents.remove(original);
+                            dayEvents.add(updated);
+                            sortEvents(selectedDay, eventMap);
+                        }
+    
+                        JOptionPane.showMessageDialog(comp, "Event updated.");
+    
+                        // Refresh the gridPanel with updated events
+                        if (gridPanel instanceof JPanel) {
+                            gridPanel.removeAll(); // Removes all components from the gridPanel
+                            gridPanel.revalidate(); // Revalidates the gridPanel to update the layout
+                            gridPanel.repaint(); // Repaints the gridPanel to show the updated layout
+    
+                            for (int i = 0; i < dayPanelList.size(); i++) {
+                                JPanel dayPanel = dayPanelList.get(i);
+                                for (Component component : dayPanel.getComponents()) {
+                                    if (component instanceof JTextArea) {
+                                        JTextArea textArea = (JTextArea) component;
+                                        textArea.setText(""); // Clears the text area
+                                        String currentDay = days[i];
+                                        for (Event event : eventMap.get(currentDay)) {
+                                            textArea.append("\n- " + event.toString()); // Updates the text area with events
+                                        }
+                                    }
                                 }
-                                /* 
-                                JTextArea textArea = (JTextArea) dayPanel; //Casts the component to a JTextArea
-                                String currentText = textArea.getText(); //Gets the current text in the text area
-                                textArea.setText(currentText + " \n" +  "- " + event.toString()); //Sets the new text in the text area with the new event
-                                break;
-                                */
+                                gridPanel.add(dayPanel); // Adds the dayPanel back to the gridPanel
                             }
+                            gridPanel.add(controlPanel); // Adds the controlPanel back to the gridPanel
                         }
-                        
-                        for (int i = 0; i< dayPanelList.size(); i++)
-                        {
-                            gridPanel.add(dayPanelList.get(i)); //Adds the dayPanel to the gridPanel
-                        }
-                        gridPanel.add(controlPanel); //Adds the controlPanel to the gridPanel
+                    } else {
+                        JOptionPane.showMessageDialog(comp, "Event update canceled.");
                     }
-                
+                }
             }
         }
     }
-}
-        }
-    }
-
-
-            
-    
-
-
     //Save Button Functionality
     static void saveEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap)
     {
