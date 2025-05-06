@@ -92,17 +92,19 @@ public class EventWeekPlanner extends JFrame {
             JPanel dayPanel = new JPanel(); //Made a Panel for each day to go inside the GridPanel to prevent autosizing from the gridPanel.
             dayPanel.setLayout(new BoxLayout(dayPanel, BoxLayout.Y_AXIS)); //Vertical allignment for the Day Buttons
             dayPanel.setBackground(dayColors[i]); //Make the dayPanels blend in the gridPanel
-            //dayPanel.add(eventTextArea); //Adds the text area to the dayPanel
             
+            //Force Center Alignment in the dayPanel, because during testing it kept moving components for the dayPanel to the left.
             eventTextArea.setAlignmentX(Component.CENTER_ALIGNMENT);
             dayButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 
             
-            //Adds the Button & day panels together
+            //Adds the Button, day, and textArea panels together
             dayPanel.add(dayButton);
             dayPanel.add(eventTextArea);
+            dayPanel.add(eventTextArea);
 
+            //Adds the dayPanel to a list to be used later.
             dayPanelList.add(dayPanel);
 
             gridPanel.add(dayPanelList.get(i));
@@ -110,20 +112,6 @@ public class EventWeekPlanner extends JFrame {
             //dayPanelList.put(day, dayPanel);
             
         }
-
-        JPanel mondayPanel = dayPanels.get("Monday"); // Get the panel for Monday
-        JPanel tuesdayPanel = dayPanels.get("Tuesday"); // Get the panel for Tuesday
-        JPanel wednesdayPanel = dayPanels.get("Wednesday"); // Get the panel for Wednesday
-        JPanel thursdayPanel = dayPanels.get("Thursday"); // Get the panel for Thursday
-        JPanel fridayPanel = dayPanels.get("Friday"); // Get the panel for Friday
-        JPanel saturdayPanel = dayPanels.get("Saturday"); // Get the panel for Saturday
-        JPanel sundayPanel = dayPanels.get("Sunday"); // Get the panel for Sunday
-
-        JTextArea eventTextArea = new JTextArea(3,20);
-        eventTextArea.setEditable(false); //Makes the text area not editable
-        eventTextArea.setLineWrap(true); //Allows the text to wrap around the text area
-        eventTextArea.setWrapStyleWord(true); //Allows the text to wrap around the text area
-        eventTextArea.setFont(new Font("Times New Roman", Font.PLAIN, 16)); //Sets the font for the text area
 
         //Make another panel inside that gridPanel
         JPanel controlPanel = new JPanel(new GridLayout(4, 1, 5, 5)); //Make the panel with 4 rows & 1 Column for the buttons
