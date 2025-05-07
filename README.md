@@ -20,10 +20,10 @@ let us know what files or features you're working on, so we don't make the same 
 | **Fix Hard Coding**    | Jason + Kloe     | 4/25                   | We abolished the hard coded code                                          |
 | **Exception Handling** | Kloe             | 4/21                   | Input validation for user input (non integer input).                      |
 | **Exception Handling** | Jason + Ne Boi   | 4/25                   | Input validation for user input (12am-11pm).                              |
-| **Additional Buttons **| Kloe + Jason     |4/22                    | Add, delete, replace, save                                                |
-| **comments           **| Kloe + Jason     |4/25                    | improve code readibility                                                  |
-| **Comments           **| Jackson + Neboi  |4/25                    | improve code readibility
-| **Comments           **| Kloe + Jason     |4/25                    | improve code readibility                                                  |
+| **Additional Buttons** | Kloe + Jason     |4/22                    | Add, delete, replace, save                                                |
+| **comments**           | Kloe + Jason     |4/25                    | improve code readibility                                                  |
+| **Comments**           | Jackson + Neboi  |4/25                    | improve code readibility
+| **Comments**           | Kloe + Jason     |4/25                    | improve code readibility                                                  |
 ---
 
 ## GUI
@@ -33,10 +33,9 @@ let us know what files or features you're working on, so we don't make the same 
 | **General skeleton**  | Kloe              | 4/25                   | Added a 2 by 4 block, along with Pastel colors                            |
 | **Put title on top**  | Jason             | 4/26                   | Title was originally added in the center, now it is on top.               |
 | **Resizing output**   | Jackson + Ne Boi  | 4/27                   | Fix title, fixed auto size, and fixed font sizes to adjust to screen      |
-| **research swing **   | Jason + Ne Boi    | 4/14                   | Researched different java functions and what they do                      |
+| **research swing**    | Jason + Ne Boi    | 4/14                   | Researched different java functions and what they do                      |
 | **Event Text Area**   | Jason + Jackson   | 4/29                   | Included a Text area within the dat panel to add the events too           |
-| **Event refresh panel | Jackson + Neboi   | 5/1                    | Made the panel refresh to update events                                   |
+|**Event refresh panel**| Jackson + Neboi   | 5/1                    | Made the panel refresh to update events                                   |
 | **Time except handle**| Jason + Ne Boi    | 4/14                   | Handled exceptions in event time inputs                                   |
-| **Upgrade Replace Event button   | Ne Boi | 4/19                   | Added a working function to replace event                                 |
-| **Improve buttons**  | Jackson + Ne Boi  | 4/20             | Made replace event and delete event function with the text areas                 |
-| **To Do**             | Contributor       |                        |                                                                           |
+| **Upgrade Replace**   | Ne Boi            | 4/19                   | Added a working function to replace event                                 |
+| **Improve buttons**   | Jackson + Ne Boi  | 4/20                   | Made replace event and delete event function with the text areas          |
