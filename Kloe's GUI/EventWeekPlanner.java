@@ -121,12 +121,15 @@ public class EventWeekPlanner extends JFrame {
         JButton deleteButton = new JButton("Delete Event");
         JButton replaceButton = new JButton("Replace Event");
         JButton saveButton = new JButton("Save");
+        JButton importButton = new JButton("Import");
+
 
         //Adds all the add/delete/replace buttons into the Control Panel
         controlPanel.add(addButton);
         controlPanel.add(deleteButton);
         controlPanel.add(replaceButton);
         controlPanel.add(saveButton);
+        controlPanel.add(importButton);
 
         //Adds the controlPanel into the gridPanel aka into the Artwork
         gridPanel.add(controlPanel);
@@ -144,6 +147,7 @@ public class EventWeekPlanner extends JFrame {
         deleteButton.addActionListener(e -> PlannerUtilities.deleteEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
         replaceButton.addActionListener(e -> PlannerUtilities.replaceEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
         saveButton.addActionListener(e -> PlannerUtilities.saveEventDialog((Component) this, days, eventMap));
+        importButton.addActionListener(e -> PlannerUtilities.importEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
 
         /*
         new javax.swing.Timer(5000, e -> {

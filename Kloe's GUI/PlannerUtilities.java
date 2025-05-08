@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
+import java.util.Scanner;
 
 
 public class PlannerUtilities
@@ -517,4 +518,82 @@ public class PlannerUtilities
 
     }
 
+    static void importEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap,
+                              JPanel gridPanel, JPanel controlPanel, ArrayList<JPanel> dayPanelList) {
+    JFileChooser fileChooser = new JFileChooser();
+    int result = fileChooser.showOpenDialog(comp);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+        File file = fileChooser.getSelectedFile();
+
+        try (Scanner scanner = new Scanner(file)) {
+            // Clear current events
+            for (String day : days) {
+                eventMap.get(day).clear();
+            }
+
+            String currentDay = null;
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine().trim();
+
+                // If line is one of the days, update currentDay
+                for (String day : days) {
+                    if (line.equalsIgnoreCase(day)) {
+                        currentDay = day;
+                        break;
+                    }
+                }
+
+                // If this is an event line (starts with -) and currentDay is valid
+                if (line.startsWith("-") && currentDay != null) {
+                    line = line.substring(1).trim(); // Remove leading dash
+                    String[] parts = line.split(" at ");
+                    if (parts.length == 2) {
+                        String name = parts[0].trim();
+                        String[] timeParts = parts[1].trim().split(" ");
+                        if (timeParts.length == 2) {
+                            String time = timeParts[0].trim();
+                            String amPm = timeParts[1].trim();
+
+                            eventMap.get(currentDay).add(new Event(name, time, amPm));
+                        }
+                    }
+                }
+            }
+
+            // Sort and refresh GUI
+            for (String day : days) {
+                sortEvents(day, eventMap);
+            }
+
+            gridPanel.removeAll();
+            gridPanel.revalidate();
+            gridPanel.repaint();
+
+            for (int i = 0; i < dayPanelList.size(); i++) {
+                JPanel dayPanel = dayPanelList.get(i);
+                String day = days[i];
+                for (Component comp1 : dayPanel.getComponents()) {
+                    if (comp1 instanceof JTextArea) {
+                        JTextArea textArea = (JTextArea) comp1;
+                        textArea.setText(" ");
+                        for (Event e : eventMap.get(day)) {
+                            textArea.append("\n- " + e.toString());
+                        }
+                    }
+                }
+                gridPanel.add(dayPanel);
+            }
+
+            gridPanel.add(controlPanel);
+
+            JOptionPane.showMessageDialog(comp, "Events successfully imported!");
+
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(comp, "Failed to read the file.");
+            e.printStackTrace();
+        }
+    }
+}
 }
