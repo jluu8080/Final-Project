@@ -1,3 +1,12 @@
+<<<<<<< Updated upstream
+=======
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+>>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -179,8 +188,42 @@ public class PlannerUtilities
                 dayEvents.removeIf(e -> e.toString().equals(selectedEvent));
                 JOptionPane.showMessageDialog(comp, "Event deleted.");
             }
+<<<<<<< Updated upstream
         }
     }
+=======
+            if (gridPanel instanceof JPanel) {
+                gridPanel.removeAll();
+                gridPanel.revalidate();
+                gridPanel.repaint();
+            
+                for (int i = 0; i < dayPanelList.size(); i++) {
+                    JPanel dayPanel = dayPanelList.get(i);
+                    String day = days[i];
+                    for (Component comp1 : dayPanel.getComponents()) {
+                        if (comp1 instanceof JTextArea) {
+                            JTextArea textArea = (JTextArea) comp1;
+                            textArea.setText(" "); // Clear first
+                            for (Event e : eventMap.get(day)) {
+                                textArea.append("\n- " + e.toString());
+                            }
+                        }
+                    }
+                    gridPanel.add(dayPanel);
+                }
+            
+                gridPanel.add(controlPanel);
+            }
+                }
+            }
+        //}
+            //}
+        //}
+    //}
+//}
+         
+        
+>>>>>>> Stashed changes
 
 
     //Replace Button Functionality
@@ -215,6 +258,7 @@ public class PlannerUtilities
         }
     }
 
+<<<<<<< Updated upstream
     if (original != null) {
         // Create a panel to combine all inputs (name, time, AM/PM, and day)
         JPanel inputPanel = new JPanel(new GridLayout(4, 2));
@@ -291,6 +335,8 @@ public class PlannerUtilities
     }
 
 
+=======
+>>>>>>> Stashed changes
     //Save Button Functionality
     static void saveEventDialog(Component comp, String[] days, Map<String, List<Event>> eventMap)
     {
@@ -349,6 +395,41 @@ public class PlannerUtilities
                 e.printStackTrace();
             }
 
+        }
+
+    }
+
+    //Import Button Functionality
+    static void importEventDialog(Component comp)
+    {
+        JFileChooser fileChooser = new JFileChooser(); //Creates a new file chooser window.
+        int result = fileChooser.showOpenDialog(comp);
+        String fileLine;
+
+        if (result == JFileChooser.APPROVE_OPTION)
+        {
+            File selectedFile = fileChooser.getSelectedFile(); //Stores the selected file
+
+            //Try to read and process the file.
+            try
+            {
+                BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
+                while((fileLine = reader.readLine()) != null)
+                {
+                    System.out.println(fileLine);
+                }
+                reader.close();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(comp, "Failed to Read File.");
+            }
+            
+        }
+        else if (result == JFileChooser.ERROR_OPTION)
+        {
+            JOptionPane.showMessageDialog(comp, "Unable to Open File.");
         }
 
     }

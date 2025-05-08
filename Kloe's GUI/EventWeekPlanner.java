@@ -98,6 +98,7 @@ public class EventWeekPlanner extends JFrame {
         JButton deleteButton = new JButton("Delete Event");
         JButton replaceButton = new JButton("Replace Event");
         JButton saveButton = new JButton("Save");
+        JButton importButton = new JButton("Import");
 
 
         //Adds Functionality for all these buttons
@@ -111,10 +112,22 @@ public class EventWeekPlanner extends JFrame {
         controlPanel.add(deleteButton);
         controlPanel.add(replaceButton);
         controlPanel.add(saveButton);
+        controlPanel.add(importButton);
 
         //Adds the controlPanel into the gridPanel aka into the Artwork
         gridPanel.add(controlPanel);
 
+<<<<<<< Updated upstream
+=======
+
+        //Adds Functionality for all these buttons
+        addButton.addActionListener(e -> PlannerUtilities.addEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
+        deleteButton.addActionListener(e -> PlannerUtilities.deleteEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
+        replaceButton.addActionListener(e -> PlannerUtilities.replaceEventDialog((Component) this, days, eventMap, gridPanel, controlPanel, dayPanelList));
+        saveButton.addActionListener(e -> PlannerUtilities.saveEventDialog((Component) this, days, eventMap));
+        importButton.addActionListener(e -> PlannerUtilities.importEventDialog((Component) this));
+
+>>>>>>> Stashed changes
         //Window Set-up
         setTitle("Weekly Event Planner"); //Sets the Title for the Window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Adds Functionality for "X" button on the window
