@@ -527,18 +527,23 @@ public class PlannerUtilities
         File file = fileChooser.getSelectedFile();
 
         try (Scanner scanner = new Scanner(file)) {
-            // Clear current events
+           
+            // Clear current events for each day to make way for the imported days and their events
             for (String day : days) {
                 eventMap.get(day).clear();
             }
 
+
             String currentDay = null;
 
+            //Reads through each line within the file.
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine().trim();
 
                 // If line is one of the days, update currentDay
                 for (String day : days) {
+
+                    //ignores the case of the line and checks if the file line is matches the day.
                     if (line.equalsIgnoreCase(day)) {
                         currentDay = day;
                         break;
@@ -547,33 +552,46 @@ public class PlannerUtilities
 
                 // If this is an event line (starts with -) and currentDay is valid
                 if (line.startsWith("-") && currentDay != null) {
-                    line = line.substring(1).trim(); // Remove leading dash
-                    String[] parts = line.split(" at ");
-                    if (parts.length == 2) {
-                        String name = parts[0].trim();
-                        String[] timeParts = parts[1].trim().split(" ");
-                        if (timeParts.length == 2) {
-                            String time = timeParts[0].trim();
-                            String amPm = timeParts[1].trim();
 
-                            eventMap.get(currentDay).add(new Event(name, time, amPm));
+                    line = line.substring(1).trim(); // Remove leading dash
+                    String[] parts = line.split(" at "); //Splits the file line into 2 parts from the " at ", we only need the time & the event
+                    
+                    //If parts has 2 parts.
+                    if (parts.length == 2) {
+
+                        //Stores 1st part for an event
+                        String name = parts[0].trim();
+
+                        //Stores the 2nd part, splits the time & the Am/Pm part
+                        String[] timeParts = parts[1].trim().split(" ");
+                       
+                        //Checks the length of timeParts
+                        if (timeParts.length == 2) {
+                            String time = timeParts[0].trim(); //Stores the time part ex. 1:00
+                            String amPm = timeParts[1].trim(); //Stores the am/pm part
+
+                            eventMap.get(currentDay).add(new Event(name, time, amPm)); //Add everything together
                         }
                     }
                 }
             }
 
-            // Sort and refresh GUI
+            // Sort the events for each day.
             for (String day : days) {
                 sortEvents(day, eventMap);
             }
 
+            //Clears the Panel of current events & etc.
             gridPanel.removeAll();
             gridPanel.revalidate();
             gridPanel.repaint();
 
+            //Loops through the dayPanelList
             for (int i = 0; i < dayPanelList.size(); i++) {
                 JPanel dayPanel = dayPanelList.get(i);
                 String day = days[i];
+
+                //Adds the imported events into their dayPanel
                 for (Component comp1 : dayPanel.getComponents()) {
                     if (comp1 instanceof JTextArea) {
                         JTextArea textArea = (JTextArea) comp1;
@@ -583,6 +601,7 @@ public class PlannerUtilities
                         }
                     }
                 }
+                
                 gridPanel.add(dayPanel);
             }
 

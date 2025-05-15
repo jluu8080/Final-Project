@@ -1,0 +1,4 @@
+Final Project Instructions
+
+Executable File is EventWeeklyPlanner
+- Open the Project as a Folder in VSC for it to run properly
